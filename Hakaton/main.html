@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Sovkom-project-demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300,400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+<div class="container">
+<header class="header">
+
+    <div class="logo">
+        <label class="logo-upload">
+            <input type="file" id="uploadLogo" accept="image/*" style="display:none">
+
+            <img id="logoImg" class="logo-img" alt="logo" style="display:none;">
+
+            <span class="logo-fallback">
+                <img src="images/logo.png" class="logo-img" alt="logo">
+            </span>
+        </label>
+
+        <div class="logo-text">
+            <h1>Подборщик вакансий</h1>
+            <p>Умный поиск с использованием AI</p>
+        </div>
+    </div>
+
+    <div class="header-actions">
+        <label class="btn-outline" for="uploadJson">
+            <i class="fas fa-upload"></i> Загрузить сборку
+        </label>
+        <input type="file" id="uploadJson" accept=".json" style="display:none">
+    </div>
+
+</header>
+
+    <div class="smart-search">
+        <div class="smart-label"><i class="fas fa-search"></i> Быстрый поиск</div>
+        <div class="smart-input-wrapper">
+            <input type="text" class="smart-input" id="textSearch" placeholder="Название или ключевые слова...">
+            <button class="btn-search" id="searchBtn"><i class="fas fa-arrow-right"></i> Найти</button>
+        </div>
+    </div>
+
+    <div class="main-grid">
+        <aside class="filters-card">
+            <h3><i class="fas fa-sliders-h"></i> Фильтры</h3>
+
+            <div class="filter-group">
+                <label>🏢 Домен / сфера</label>
+                <select id="domainFilter">
+                    <option value="all">Все</option>
+                    <option value="FinTech">FinTech</option>
+                    <option value="e-commerce">e-commerce</option>
+                    <option value="HealthTech">HealthTech</option>
+                    <option value="SaaS">SaaS / B2B SaaS</option>
+                    <option value="госсектор">госсектор</option>
+                    <option value="ERP">ERP</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>💰 Зарплата (мес, руб)</label>
+                <div class="slider-container">
+                    <div class="slider-track"></div>
+                    <input type="range" id="salaryMinSlider" min="0" max="300000" step="5000" value="70000">
+                    <input type="range" id="salaryMaxSlider" min="0" max="300000" step="5000" value="180000">
+                </div>
+                <div class="salary-range-inputs">
+                    <input type="number" id="salaryMin" value="70000">
+                    <input type="number" id="salaryMax" value="180000">
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <label class="checkbox-item">
+                    <input type="checkbox" id="remoteOnly"> 🌍 Только удалённая работа
+                </label>
+            </div>
+
+            <div class="filter-group" id="skillsFilterGroup">
+                <label><i class="fas fa-code"></i> Фильтр по навыкам</label>
+                <div class="skills-filter-container" id="skillsFilterContainer">
+                    <div class="skills-loading">Загрузка навыков...</div>
+                </div>
+
+                <div class="skills-filter-actions">
+                    <button type="button" id="selectAllSkills" class="btn-small">Выбрать все</button>
+                    <button type="button" id="clearAllSkills" class="btn-small">Сбросить</button>
+                </div>
+            </div>
+
+            <button id="applyFilters" class="btn-primary">Применить фильтры</button>
+        </aside>
+
+        <div class="right-area">
+
+<div class="charts-layout">
+
+    <div class="chart-card chart-salary">
+        <h3><i class="fas fa-chart-line"></i> Средняя ЗП по направлениям</h3>
+        <canvas id="salaryChart"></canvas>
+    </div>
+
+    <div class="chart-card chart-type">
+        <h3><i class="fas fa-chart-pie"></i> Распределение вакансий</h3>
+        <canvas id="typeChart"></canvas>
+    </div>
+
+    <div class="chart-card chart-match">
+        <h3><i class="fas fa-percent"></i> Подходящие вакансии</h3>
+
+        <div style="margin-bottom:10px;">
+            <select id="matchView">
+                <option value="3">Топ 3</option>
+                <option value="5" selected>Топ 5</option>
+                <option value="all">Все</option>
+            </select>
+        </div>
+
+        <canvas id="matchChart"></canvas>
+    </div>
+
+</div>
+<div class="comparison-section" id="comparisonSection">
+    <h3><i class="fas fa-balance-scale"></i> Сравнение вакансий</h3>
+    <p>Выберите минимум 2 вакансии</p>
+    <button id="clearCompareBtn" class="btn-small" style="margin-bottom:12px;">
+        очистить сравнение
+    </button>
+</div>
+            <div class="vacancies-section">
+                <div class="vacancy-header">
+                    <h3>
+                        <i class="fas fa-briefcase"></i>
+                        Найденные вакансии <span id="vacancyCount">0</span>
+                    </h3>
+
+                    <div class="sort-control">
+                        <label>Сортировка:</label>
+
+                        <select id="sortDate">
+                            <option value="default">Дата</option>
+                            <option value="newFirst">Сначала новые</option>
+                            <option value="oldFirst">Сначала старые</option>
+                        </select>
+                        <select id="sortSalary">
+                            <option value="none">ЗП</option>
+                            <option value="high">Сначала высокая</option>
+                            <option value="low">Сначала низкая</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="vacanciesList" class="vacancy-list"></div>
+            </div>
+
+        </div>
+    </div>
+    <footer>
+        <p class="footer-text">ИИнтеллектуалы | All rights reserved</p>
+    </footer>
+</div>
+<script src="scripts/data_mok.js"></script>
+</body>
+</html>
