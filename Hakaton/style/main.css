@@ -1,0 +1,519 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f4f7fc;
+    color: #1a2c3e;
+    padding: 32px 24px 64px;
+}
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+    background: white;
+    padding: 16px 28px;
+    border-radius: 28px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+.logo img{
+    height: 50px;
+}
+.logo h1 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #0F2B3D, #1B6B87);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.logo p {
+    font-size: 0.8rem;
+    color: #5e7b8c;
+}
+.btn-outline, .btn-primary {
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: 0.2s;
+    border: none;
+    background: white;
+    display: inline-block;
+    text-align: center;
+}
+.btn-outline {
+    border: 1px solid #cbdde6;
+}
+.btn-outline:hover {
+    background: #eef3f7;
+    border-color: #8fb3c4;
+}
+.btn-primary {
+    background: #1A6F8C;
+    color: white;
+    box-shadow: 0 4px 8px rgba(26,111,140,0.2);
+}
+.btn-primary:hover {
+    background: #0e5a73;
+    transform: translateY(-1px);
+}
+.smart-search {
+    background: white;
+    border-radius: 32px;
+    padding: 20px 28px;
+    margin-bottom: 32px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+.smart-label {
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.smart-input-wrapper {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.smart-input {
+    flex: 1;
+    padding: 14px 18px;
+    border-radius: 60px;
+    border: 1px solid #dce7ed;
+    font-size: 1rem;
+    font-family: inherit;
+}
+.smart-input:focus {
+    outline: none;
+    border-color: #1A6F8C;
+    box-shadow: 0 0 0 3px rgba(26,111,140,0.1);
+}
+.btn-search {
+    background: #1A6F8C;
+    border: none;
+    padding: 0 32px;
+    border-radius: 60px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+.main-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 28px;
+}
+.filters-card {
+    background: white;
+    border-radius: 28px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    height: fit-content;
+}
+.filter-group {
+    margin-bottom: 24px;
+}
+.filter-group label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    color: #2c5a6e;
+}
+.filter-group select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 20px;
+    border: 1px solid #dee9ef;
+    background: white;
+}
+.slider-container {
+    position: relative;
+    height: 40px;
+    margin: 20px 0 15px;
+}
+.slider-track {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 4px;
+    background: #dee9ef;
+    border-radius: 4px;
+    pointer-events: none;
+}
+.slider-container input[type="range"] {
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: transparent;
+    -webkit-appearance: none;
+    pointer-events: none;
+}
+.slider-container input[type="range"]:focus {
+    outline: none;
+}
+.slider-container input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #1A6F8C;
+    cursor: pointer;
+    pointer-events: auto;
+    border: 2px solid white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.slider-container input[type="range"]::-webkit-slider-thumb:hover {
+    background: #0e5a73;
+    transform: scale(1.15);
+}
+.slider-container input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #1A6F8C;
+    cursor: pointer;
+    pointer-events: auto;
+    border: 2px solid white;
+}
+
+.salary-range-inputs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+}
+.salary-range-inputs input {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 20px;
+    border: 1px solid #dee9ef;
+    background: white;
+    font-size: 0.85rem;
+}
+.salary-range-inputs span {
+    color: #809aab;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 0;
+    cursor: pointer;
+    font-weight: normal;
+}
+.right-area {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+.charts-layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.chart-salary {
+    grid-column: 1 / -1;
+}
+.chart-card {
+    background: white;
+    border-radius: 28px;
+    padding: 18px 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+.chart-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+canvas {
+    max-height: 220px;
+    width: 100%;
+}
+.vacancies-section {
+    background: white;
+    border-radius: 28px;
+    padding: 20px 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+}
+.vacancy-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+.sort-control {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+.sort-control select {
+    padding: 6px 12px;
+    border-radius: 40px;
+    border: 1px solid #cbdde6;
+    background: white;
+}
+.vacancy-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.vacancy-item {
+    border: 1px solid #e6edf2;
+    border-radius: 20px;
+    padding: 16px 20px;
+    transition: 0.1s;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.vacancy-info h4 {
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+.vacancy-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 0.8rem;
+    color: #4c6f83;
+}
+.badge {
+    background: #e1f0f5;
+    border-radius: 40px;
+    padding: 4px 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+footer {
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    position: fixed;
+
+}
+.footer-text{
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.8);
+}
+
+@media (max-width: 800px) {
+    .main-grid { grid-template-columns: 1fr; }
+    body { padding: 20px; }
+}
+.skills-filter-container {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #dee9ef;
+    border-radius: 16px;
+    padding: 8px 12px;
+    background: #fafefe;
+    margin-bottom: 8px;
+}
+
+.skill-checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    margin: 2px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: 0.85rem;
+}
+
+.skill-checkbox-item:hover {
+    background: #eef3f7;
+}
+
+.skill-checkbox-item input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #1A6F8C;
+}
+
+.skill-checkbox-item label {
+    flex: 1;
+    cursor: pointer;
+    font-weight: normal;
+    margin-bottom: 0;
+    color: #1a2c3e;
+}
+
+.skills-loading {
+    color: #809aab;
+    text-align: center;
+    padding: 12px;
+    font-size: 0.8rem;
+}
+
+.skills-filter-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.btn-small {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid #cbdde6;
+    background: white;
+    transition: 0.2s;
+    flex: 1;
+}
+
+.btn-small:hover {
+    background: #eef3f7;
+    border-color: #8fb3c4;
+}
+
+/* Стиль для отображения выбранных навыков в вакансии */
+.selected-skills-badge {
+    background: #1A6F8C;
+    color: white;
+    border-radius: 12px;
+    padding: 2px 8px;
+    font-size: 0.7rem;
+}
+skill-chip {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #eef3f7;
+    margin: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.8rem;
+    user-select: none;
+}
+
+.skill-chip:hover {
+    transform: translateY(-2px);
+    background: #dce7ed;
+}
+
+.skill-chip.active {
+    background: #1A6F8C;
+    color: white;
+    box-shadow: 0 4px 10px rgba(26,111,140,0.3);
+    transform: scale(1.05);
+}
+
+.comparison-section {
+    background: white;
+    border-radius: 28px;
+    padding: 20px 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+    margin-top: 28px;
+}
+
+.comparison-section h3 {
+    margin-bottom: 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.comparison-grid {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.compare-card {
+    flex: 1;
+    min-width: 220px;
+    padding: 16px;
+    border-radius: 20px;
+    border: 1px solid #e6edf2;
+    background: #fff;
+    transition: 0.2s;
+}
+
+.compare-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.compare-card.best {
+    border: 2px solid #2e7d32;
+    background: #f1fbf4;
+}
+
+.compare-btn {
+    margin-top: 6px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 1px solid #cbdde6;
+    cursor: pointer;
+    font-size: 0.7rem;
+    background: white;
+    transition: 0.2s;
+}
+
+.compare-btn:hover {
+    background: #eef3f7;
+}
+
+.compare-btn.active {
+    background: #1A6F8C;
+    color: white;
+    border-color: #1A6F8C;
+}
+
+.chart-card select {
+    padding: 6px 10px;
+    border-radius: 20px;
+    border: 1px solid #cbdde6;
+    background: white;
+    font-size: 0.75rem;
+}
+
+.skills-filter-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 800px) {
+    .skills-filter-container {
+        max-height: 150px;
+    }
+}
