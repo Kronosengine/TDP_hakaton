@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЭИОС КГУ</title>
+
+    <link rel="stylesheet" href="style/main.css">
+</head>
+
+<body>
+
+    <!-- HERO -->
+
+    <header class="hero">
+
+        <div class="overlay"></div>
+
+        <input type="checkbox" id="menu-toggle">
+
+        <!-- HEADER -->
+
+        <div class="header">
+
+            <div class="left-header">
+
+                <label for="menu-toggle" class="burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+
+                <a href="#" class="logo">
+                    <img src="images/kgu_logo.jpg" alt="Логотип КГУ">
+                </a>
+
+            </div>
+
+            <!-- SEARCH -->
+
+            <div class="search">
+
+                <input type="text" placeholder="Поиск...">
+
+                <button aria-label="Поиск">
+
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"></circle>
+                        <path d="M20 20L17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                    </svg>
+
+                </button>
+
+            </div>
+
+            <!-- THEME -->
+
+            <label for="checkbox" class="toggler">
+
+                <input type="checkbox" id="checkbox">
+
+                <span class="ball"></span>
+
+                <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                </svg>
+
+                <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+
+            </label>
+
+        </div>
+
+        <!-- MOBILE MENU -->
+
+        <nav class="mobile-menu">
+
+            <a href="#">Главная</a>
+            <a href="#">Направления</a>
+            <a href="#">Факультеты</a>
+            <a href="#">Контакты</a>
+
+        </nav>
+
+    </header>
+
+    <!-- MAIN -->
+
+    <main class="container">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="filters-card">
+
+                <h3>Фильтры</h3>
+
+                <!-- SPECIALTIES -->
+
+                <div class="filter-group">
+
+                    <label>Специальности</label>
+
+                    <div class="checkbox-list">
+
+                        <label class="checkbox-item">
+                            <input type="checkbox">
+                            Информатика
+                        </label>
+
+                        <label class="checkbox-item">
+                            <input type="checkbox">
+                            Экономика
+                        </label>
+
+                        <label class="checkbox-item">
+                            <input type="checkbox">
+                            Юриспруденция
+                        </label>
+
+                        <label class="checkbox-item">
+                            <input type="checkbox">
+                            Дизайн
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <!-- SCORE -->
+
+                <div class="filter-group">
+
+                    <label>Минимальный балл</label>
+
+                    <div class="range-wrapper">
+
+                        <input type="range" min="0" max="400" value="180">
+
+                        <div class="range-values">
+                            <span>0</span>
+                            <span>180</span>
+                            <span>400</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- FORM -->
+
+                <div class="filter-group">
+
+                    <label>Форма обучения</label>
+
+                    <select>
+                        <option>Любая</option>
+                        <option>Очная</option>
+                        <option>Заочная</option>
+                        <option>Очно-заочная</option>
+                    </select>
+
+                </div>
+
+                <!-- BUDGET -->
+
+                <div class="filter-group">
+
+                    <label class="checkbox-item">
+                        <input type="checkbox">
+                        Только бюджет
+                    </label>
+
+                </div>
+
+                <button class="apply-btn">
+                    Применить фильтры
+                </button>
+
+            </div>
+
+        </aside>
+
+        <!-- CONTENT -->
+
+        <section class="content">
+
+            <div class="calculator">
+
+                <h2>Калькулятор ЕГЭ</h2>
+
+                <div class="subject-row">
+
+                    <select>
+                        <option>Предмет</option>
+                        <option>Математика</option>
+                        <option>Русский язык</option>
+                        <option>Физика</option>
+                        <option>Информатика</option>
+                    </select>
+
+                    <input type="number" placeholder="Балл">
+
+                </div>
+
+                <div class="subject-row">
+
+                    <select>
+                        <option>Предмет</option>
+                        <option>Математика</option>
+                        <option>Русский язык</option>
+                        <option>Физика</option>
+                        <option>Информатика</option>
+                    </select>
+
+                    <input type="number" placeholder="Балл">
+
+                </div>
+
+                <div class="subject-row">
+
+                    <select>
+                        <option>Предмет</option>
+                        <option>Математика</option>
+                        <option>Русский язык</option>
+                        <option>Физика</option>
+                        <option>Информатика</option>
+                    </select>
+
+                    <input type="number" placeholder="Балл">
+
+                </div>
+
+                <button class="calculate-btn">
+                    Рассчитать
+                </button>
+
+                <div class="result">
+                    Здесь будет результат
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-column">
+
+                <h4 class="footer-title">Мы в соцсетях</h4>
+
+                <div class="social-links">
+
+                    <a href="#" class="social-link">
+                        <img src="images/vk.webp" alt="VK">
+                        ВКонтакте
+                    </a>
+
+                    <a href="#" class="social-link">
+                        <img src="images/tg.png" alt="Telegram">
+                        Telegram
+                    </a>
+
+                    <a href="#" class="social-link">
+                        <img src="images/youtube.png" alt="YouTube">
+                        YouTube
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h4 class="footer-title">Поддержка</h4>
+
+                <div class="support-links">
+
+                    <a href="#">Помощь</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Пользовательское соглашение</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 ИИнтелектуалы
+        </div>
+
+    </footer>
+
+    <script src="JS/theme.js"></script>
+
+</body>
+
+</html>
