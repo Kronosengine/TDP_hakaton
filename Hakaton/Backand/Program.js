@@ -1,4 +1,5 @@
 export class Programm {
-    data;
+    static data;
     static Money;
+    static Subj;
 }

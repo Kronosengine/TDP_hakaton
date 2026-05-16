@@ -17,4 +17,9 @@ export class Creater {
         text.textContent = Content;
         return text;
     }
+    static CreateInput = (InputType) => {
+        const input = document.createElement("input");
+        input.type = InputType;
+        return input;
+    }
 }

@@ -11,7 +11,7 @@ class Money {
     }
     CreatePage = () => {
         for(const Element of Programm.Money) {
-            const MainContainer = document.getElementsByClassName("MainContainer")[0];
+            const MainContainer = document.getElementsByClassName("Subjects")[0];
             const Block = Creater.CreateContainer();
             const Name = Creater.CreateH1(Element.name);
             const Amount = Creater.CreateP(`Размер: ${Element.amount}`);
