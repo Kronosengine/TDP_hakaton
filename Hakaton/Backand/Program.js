@@ -4,4 +4,6 @@ export class Programm {
     static Subj;
     static Arm;
     static ArmPrepod;
+    static Prof;
+    static dataProf;
 }
