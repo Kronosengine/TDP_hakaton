@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Абитуриент КГУ 2026</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-overlay"></div>
+    <div class="burger" id="burgerBtn"><span></span><span></span><span></span></div>
+    
+    <div class="search-wrapper">
+        <input type="text" class="main-search-input" id="searchInput" placeholder="Поиск программ...">
+        <div class="ai-trigger-icon" id="aiBtn" title="Спросить нейросеть">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"></path>
+            </svg>
+        </div>
+    </div>
+
+    <button class="theme-toggle" id="theme-toggle">☀️</button>
+</header>
+
+<nav id="sidebar">
+    <div class="sidebar-content">
+        <a href="#" class="sidebar-link">Личный кабинет</a>
+        <a href="#" class="sidebar-link">Расписание ЕГЭ</a>
+        <a href="#" class="sidebar-link">Общежития</a>
+        <a href="#" class="sidebar-link">Контакты ПК</a>
+    </div>
+</nav>
+
+<div id="ai-window" class="modal">
+    <div class="modal-header">
+        <span>🤖 AI Помощник КГУ</span>
+        <button class="close-modal" id="closeAiBtn">✕</button>
+    </div>
+    <div class="chat-body" id="aiChatBody">
+        <div class="message bot">Привет! Я нейросеть КГУ. Рассказать тебе о проходных баллах или помочь выбрать направление?</div>
+    </div>
+    <div class="chat-footer">
+        <input type="text" placeholder="Задай вопрос нейросети...">
+        <button class="send-btn">➤</button>
+    </div>
+</div>
+
+<div id="map-view" class="modal">
+    <div class="modal-header">
+        <button class="close-modal" id="closeMapBtn">← Назад</button>
+        <span>Корпуса КГУ</span>
+    </div>
+    <iframe class="map-frame" src="https://yandex.ru/map-widget/v1/?ll=40.926830%2C57.761000&z=15"></iframe>
+</div>
+
+<div class="main-layout">
+    <aside class="filters-sidebar">
+        <div class="filter-card">
+            <h3>Фильтры</h3>
+            <div class="filter-group">
+                <label>Направление</label>
+                <div class="Subjects">
+
+                </div>
+            </div>
+            <div class="filter-group">
+                <label>Форма обучения</label>
+                <select id="form">
+                    <option>Любое</option>
+                    <option>Очное</option>
+                    <option>Заочное</option>
+                    <option>Очно-заочное</option>
+                </select>
+            </div>
+            <button class="apply-btn">Применить</button>
+        </div>
+    </aside>
+
+    <main class="program-list" id="programContainer"></main>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <p><b>Костромской Государственный Университет</b></p>
+        <p>Приемная комиссия: +7 (4942) 49-80-44</p>
+        <p>© 2026 Все права защищены</p>
+    </div>
+</footer>
+
+<nav class="bottom-nav">
+    <button class="nav-btn" id="navMap">📍</button>
+    <button class="nav-btn" id="navUp">▲</button>
+    <button class="nav-btn" id="navHome">🏠</button>
+    <button class="nav-btn" id="navDown">▼</button>
+    <button class="nav-btn" id="navInfo">ⓘ</button>
+</nav>
+
+<script src="script.js"></script>
+<script type="module" src="./Backand/Finder.js"></script>
+<script type="module" src="./Backand/Program.js"></script>
+<script type="module" src="./Backand/Creater.js"></script>
+<script type="module" src="./Backand/SpecialPage.js"></script>
+</body>
+</html>
