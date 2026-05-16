@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Преподаватели — ЭИОС КГУ</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="prepody.css">
+    <link rel="icon" href="images/favicon.jfif" type="image/x-icon">
+</head>
+<body>
+    <div class="burger-overlay" id="burgerOverlay"></div>
+    <div class="info-overlay" id="infoOverlay"></div>
+
+    <header class="hero">
+        <div class="overlay"></div>
+        
+        <input type="checkbox" id="menu-toggle">
+        
+        <div class="header">
+            <div class="header-top-row">
+                <a href="main.html" class="logo">
+                    <img src="images/kgu_logo.jpg" alt="Логотип">
+                </a>
+                
+                <label for="menu-toggle" class="burger" id="burgerBtn">
+                    <span></span><span></span><span></span>
+                </label>
+
+                <div class="search">
+                    <input type="text" placeholder="Поиск по сайту...">
+                    <button>
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+                            <path d="M20 20L17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </div>
+
+                <button class="ai-assistant-btn" title="ИИ Помощник">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 8V4H8"></path>
+                        <rect x="5" y="8" width="14" height="11" rx="2"></rect>
+                        <path d="M9 13h.01"></path>
+                        <path d="M15 13h.01"></path>
+                    </svg>
+                </button>
+
+                <label class="theme-switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="switch-ball"></span>
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </label>
+            </div>
+
+            <div class="header-bottom-row">
+                <div class="mobile-search-container"></div>
+                
+                <nav class="desktop-menu">
+                    <a href="main.html">Главная</a>
+                    <a href="military.html">Военный центр</a>
+                    <a href="prepody.html" style="background: rgba(255,255,255,0.2); color: #fff;">Преподаватели</a>
+                    <a href="programmy.html">Образовательные программы</a>
+                    <a href="stipka.html">Стипендия</a>
+                    <a href="uniki.html">Корпуса</a>
+                </nav>
+            </div>
+        </div>
+        
+        <nav class="mobile-menu">
+            <a href="main.html">Главная</a>
+            <a href="military.html">Военный центр</a>
+            <a href="prepody.html" style="background: rgba(255,255,255,0.1);">Преподаватели</a>
+            <a href="programmy.html">Образовательные программы</a>
+            <a href="stipka.html">Стипендия</a>
+            <a href="uniki.html">Корпуса</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="teachers-section">
+            <h2 class="page-title">👨‍🏫 Преподавательский состав</h2>
+            <p class="page-subtitle">Вся информация о преподавателях и их дисциплинах</p>
+
+            <div class="teachers-grid">
+                <!-- Преподаватель 1 -->
+                <div class="teacher-card">
+                    <div class="teacher-header">
+                        <div class="teacher-avatar">ИС</div>
+                        <div class="teacher-info">
+                            <h3>Иванов Пётр Сергеевич</h3>
+                            <p class="position">Доцент, кандидат технических наук</p>
+                            <span class="dept-tag">Кафедра информационных систем и технологий</span>
+                        </div>
+                    </div>
+                    <div class="teacher-details">
+                        <div class="details-content">
+                            <h4>📚 Читаемые дисциплины:</h4>
+                            <div class="subjects">
+                                <span>Базы данных</span>
+                                <span>Разработка на C#</span>
+                                <span>Проектирование инфосистем</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Преподаватель 2 -->
+                <div class="teacher-card">
+                    <div class="teacher-header">
+                        <div class="teacher-avatar">ЕН</div>
+                        <div class="teacher-info">
+                            <h3>Петрова Елена Николаевна</h3>
+                            <p class="position">Профессор, доктор физ-мат наук</p>
+                            <span class="dept-tag">Кафедра высшей математики</span>
+                        </div>
+                    </div>
+                    <div class="teacher-details">
+                        <div class="details-content">
+                            <h4>📚 Читаемые дисциплины:</h4>
+                            <div class="subjects">
+                                <span>Математический анализ</span>
+                                <span>Теория вероятностей</span>
+                                <span>Линейная алгебра</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Преподаватель 3 -->
+                <div class="teacher-card">
+                    <div class="teacher-header">
+                        <div class="teacher-avatar">АВ</div>
+                        <div class="teacher-info">
+                            <h3>Сидоров Алексей Владимирович</h3>
+                            <p class="position">Старший преподаватель</p>
+                            <span class="dept-tag">Кафедра информационных систем и технологий</span>
+                        </div>
+                    </div>
+                    <div class="teacher-details">
+                        <div class="details-content">
+                            <h4>📚 Читаемые дисциплины:</h4>
+                            <div class="subjects">
+                                <span>Веб-разработка</span>
+                                <span>Node.js & Архитектура</span>
+                                <span>Кроссплатформенная мобильная верстка</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Преподаватель 4 -->
+                <div class="teacher-card">
+                    <div class="teacher-header">
+                        <div class="teacher-avatar">ОИ</div>
+                        <div class="teacher-info">
+                            <h3>Кузнецова Ольга Игоревна</h3>
+                            <p class="position">Доцент, кандидат физ-мат наук</p>
+                            <span class="dept-tag">Кафедра общей и теоретической физики</span>
+                        </div>
+                    </div>
+                    <div class="teacher-details">
+                        <div class="details-content">
+                            <h4>📚 Читаемые дисциплины:</h4>
+                            <div class="subjects">
+                                <span>Квантовая механика</span>
+                                <span>Оптика</span>
+                                <span>Общий курс физики</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Преподаватель 5 -->
+                <div class="teacher-card">
+                    <div class="teacher-header">
+                        <div class="teacher-avatar">ТН</div>
+                        <div class="teacher-info">
+                            <h3>Тихонова Наталья Владимировна</h3>
+                            <p class="position">Доцент, кандидат филологических наук</p>
+                            <span class="dept-tag">Кафедра отечественной филологии</span>
+                        </div>
+                    </div>
+                    <div class="teacher-details">
+                        <div class="details-content">
+                            <h4>📚 Читаемые дисциплины:</h4>
+                            <div class="subjects">
+                                <span>Современный русский язык</span>
+                                <span>Литературоведение</span>
+                                <span>Стилистика</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Преподаватель 6 -->
+                <div class="teacher-card">
+                    <div class="teacher-header">
+                        <div class="teacher-avatar">АС</div>
+                        <div class="teacher-info">
+                            <h3>Архипов Сергей Михайлович</h3>
+                            <p class="position">Профессор, доктор исторических наук</p>
+                            <span class="dept-tag">Кафедра истории и философии</span>
+                        </div>
+                    </div>
+                    <div class="teacher-details">
+                        <div class="details-content">
+                            <h4>📚 Читаемые дисциплины:</h4>
+                            <div class="subjects">
+                                <span>История России</span>
+                                <span>Философия</span>
+                                <span>Культурология</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Преподаватель 7 -->
+                <div class="teacher-card">
+                    <div class="teacher-header">
+                        <div class="teacher-avatar">ДК</div>
+                        <div class="teacher-info">
+                            <h3>Дмитриев Константин Павлович</h3>
+                            <p class="position">Старший преподаватель</p>
+                            <span class="dept-tag">Кафедра вычислительной техники</span>
+                        </div>
+                    </div>
+                    <div class="teacher-details">
+                        <div class="details-content">
+                            <h4>📚 Читаемые дисциплины:</h4>
+                            <div class="subjects">
+                                <span>Архитектура ЭВМ</span>
+                                <span>Схемотехника</span>
+                                <span>Ассемблер</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Преподаватель 8 -->
+                <div class="teacher-card">
+                    <div class="teacher-header">
+                        <div class="teacher-avatar">СМ</div>
+                        <div class="teacher-info">
+                            <h3>Смирнова Мария Алексеевна</h3>
+                            <p class="position">Доцент, кандидат технических наук</p>
+                            <span class="dept-tag">Кафедра автоматики и управления</span>
+                        </div>
+                    </div>
+                    <div class="teacher-details">
+                        <div class="details-content">
+                            <h4>📚 Читаемые дисциплины:</h4>
+                            <div class="subjects">
+                                <span>Теория автоматического управления</span>
+                                <span>Микропроцессорные системы</span>
+                                <span>Промышленные контроллеры</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <nav class="navbar" id="navbar">
+        <button class="nav-btn" id="btnMap" title="Карты"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><path d="M8 2v16M16 6v16"/></svg></button>
+        <button class="nav-btn" id="btnScrollUp" title="Наверх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+        <a href="main.html" class="nav-btn" title="Главная"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+        <button class="nav-btn" id="btnScrollDown" title="Вниз"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button>
+        <button class="nav-btn" id="btnInfo" title="Инфо"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
+    </nav>
+
+    <div class="map-modal" id="mapModal">
+        <div class="map-modal-content">
+            <button class="map-close" id="mapClose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+            <iframe id="mapFrame" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="info-panel" id="infoPanel">
+        <button class="info-close" id="infoClose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+        <h3>Полезное</h3>
+        <div class="info-links">
+            <a href="#" class="info-link">📅 Расписание</a>
+            <a href="#" class="info-link">🎓 СДО</a>
+            <a href="#" class="info-link">🎮 Игра</a>
+            <a href="#" class="info-link">📚 Библиотека</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4 class="footer-title">Мы в соцсетях</h4>
+                <div class="social-links">
+                    <a href="https://vk.com/kostroma_university" target="_blank" class="social-link"><img src="images/vk.webp" alt="VK" class="social-icon">ВКонтакте</a>
+                    <a href="https://t.me/KGU_Kostroma" target="_blank" class="social-link"><img src="images/tg.png" alt="Telegram" class="social-icon">Telegram</a>
+                    <a href="https://max.ru/kostroma_university" target="_blank" class="social-link"><img src="images/Max_logo_2025.png" alt="Max" class="social-icon">Max</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4 class="footer-title">Поддержка</h4>
+                <div class="support-links">
+                    <a href="#" class="support-link">Помощь</a>
+                    <a href="#" class="support-link">Частые вопросы</a>
+                    <a href="#" class="support-link">Пользовательское соглашение</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-text">© 2026 Интеллектуалы</p>
+        </div>
+    </footer>
+
+    <script src="prepody.js"></script>
+</body>
+</html>

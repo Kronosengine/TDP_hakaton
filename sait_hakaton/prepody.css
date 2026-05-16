@@ -1,0 +1,193 @@
+/* ==========================================================================
+   ======           СТИЛИ СЕКЦИИ ПРЕПОДАВАТЕЛЕЙ                       ======
+   ========================================================================= */
+
+.teachers-section {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.page-title {
+    font-size: 26px;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.page-subtitle {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+/* Вертикальный список карточек */
+.teachers-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Карточка преподавателя */
+.teacher-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.teacher-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+/* Шапка карточки (вся информация здесь) */
+.teacher-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Текстовая иконка-заглушка вместо фото */
+.teacher-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+    user-select: none;
+}
+
+body.dark .teacher-avatar {
+    background: rgba(59, 130, 246, 0.2);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+}
+
+.teacher-info {
+    flex: 1;
+}
+
+.teacher-info h3 {
+    font-size: 18px;
+    color: var(--text);
+    margin-bottom: 4px;
+}
+
+.teacher-info .position {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 8px;
+}
+
+.dept-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 20px;
+}
+
+/* Блок с дисциплинами (всегда виден) */
+.teacher-details {
+    border-top: 1px solid var(--border);
+    background: var(--card);
+}
+
+.details-content {
+    padding: 16px 20px;
+}
+
+.details-content h4 {
+    font-size: 13px;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+.subjects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.subjects span {
+    font-size: 12px;
+    padding: 6px 14px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--text);
+    transition: all 0.2s;
+}
+
+.subjects span:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: white;
+}
+
+body.dark .subjects span:hover {
+    background: var(--accent);
+    color: white;
+}
+
+/* ==========================================================================
+   ======             АДАПТИВ СТРАНИЦЫ (ОТ 320px ДО 600px)             ======
+   ========================================================================= */
+
+@media (max-width: 600px) {
+    .teachers-section {
+        padding: 16px 12px;
+    }
+
+    .page-title {
+        font-size: 22px;
+    }
+
+    .teacher-header {
+        padding: 14px 12px;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .teacher-avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 16px;
+    }
+
+    .teacher-info h3 {
+        font-size: 15px;
+    }
+
+    .teacher-info .position {
+        font-size: 12px;
+    }
+
+    .details-content {
+        padding: 12px;
+    }
+    
+    .subjects span {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
