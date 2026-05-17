@@ -303,6 +303,7 @@
             width: 100%;
             box-sizing: border-box;
             margin-bottom: 30px;
+            overflow: hidden;
         }
 
         .quests-title {
@@ -315,7 +316,7 @@
             display: flex;
             overflow-x: hidden;
             scroll-snap-type: x mandatory;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
             gap: 0;
             width: 100%;
         }
@@ -325,6 +326,7 @@
             scroll-snap-align: start;
             box-sizing: border-box;
             padding: 0 4px;
+            flex-shrink: 0;
         }
 
         .quest-stage h3 {
@@ -428,6 +430,7 @@
 
         .news-header {
             padding: 20px 20px 10px 20px;
+            cursor: pointer;
         }
 
         .news-date {
@@ -467,6 +470,15 @@
         }
 
         .news-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+        }
+
+        .news-card.active .news-content {
+            max-height: 500px;
             padding: 0 20px 20px 20px;
         }
 
@@ -475,24 +487,15 @@
             color: var(--text);
             line-height: 1.5;
             margin-bottom: 12px;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
         }
 
-        .read-more {
-            font-size: 13px;
-            color: var(--accent);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            transition: gap 0.2s;
-        }
-
-        .read-more:hover {
-            gap: 8px;
+        .news-full-text {
+            font-size: 14px;
+            color: var(--text);
+            line-height: 1.6;
+            margin-top: 8px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
         }
 
         /* НАВБАР */
@@ -792,10 +795,10 @@
         </button>
         <h3>Полезное</h3>
         <div class="info-links">
-            <a href="#" class="info-link">📅 Расписание</a>
-            <a href="#" class="info-link">🎓 СДО</a>
+            <a href="https://eios.kosgos.ru/" class="info-link">📅 Расписание</a>
+            <a href="https://sdo.kosgos.ru/" class="info-link">🎓 СДО</a>
             <a href="#" class="info-link">🎮 Игра</a>
-            <a href="#" class="info-link">📚 Библиотека</a>
+            <a href="https://library.kosgos.ru/megapro/web" class="info-link">📚 Библиотека</a>
         </div>
     </div>
 
@@ -929,7 +932,7 @@
         if (infoOverlay) infoOverlay.addEventListener('click', closeInfo);
 
         // ==========================================
-        // 6. КВЕСТЫ: СВАЙПЫ
+        // 6. КВЕСТЫ: СВАЙПЫ (ИСПРАВЛЕНО)
         // ==========================================
         const wrapper = document.getElementById('questsWrapper');
         const dots = document.querySelectorAll('.dot');
@@ -937,6 +940,9 @@
         if (wrapper && dots.length > 0) {
             let currentStage = 0;
             const totalStages = dots.length;
+
+            // Устанавливаем начальное положение
+            wrapper.style.transform = 'translateX(0%)';
 
             function goToStage(index) {
                 if (index < 0 || index >= totalStages) return;
@@ -946,25 +952,59 @@
                 dots[currentStage].classList.add('active');
             }
 
+            // Touch-свайпы
             let touchStartX = 0;
-            wrapper.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+            let touchEndX = 0;
+
+            wrapper.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
             wrapper.addEventListener('touchend', (e) => {
-                const diff = touchStartX - e.changedTouches[0].screenX;
-                if (Math.abs(diff) > 50) diff > 0 ? goToStage(currentStage + 1) : goToStage(currentStage - 1);
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        goToStage(currentStage + 1);
+                    } else {
+                        goToStage(currentStage - 1);
+                    }
+                }
             });
 
+            // Drag-свайпы мышкой
             let isDragging = false;
             let mouseStartX = 0;
-            wrapper.addEventListener('mousedown', (e) => { isDragging = true; mouseStartX = e.screenX; });
+
+            wrapper.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                mouseStartX = e.screenX;
+                e.preventDefault();
+            });
+
             wrapper.addEventListener('mouseup', (e) => {
                 if (!isDragging) return;
                 isDragging = false;
                 const diff = mouseStartX - e.screenX;
-                if (Math.abs(diff) > 50) diff > 0 ? goToStage(currentStage + 1) : goToStage(currentStage - 1);
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        goToStage(currentStage + 1);
+                    } else {
+                        goToStage(currentStage - 1);
+                    }
+                }
             });
-            wrapper.addEventListener('mouseleave', () => { isDragging = false; });
 
-            dots.forEach(dot => dot.addEventListener('click', () => goToStage(parseInt(dot.dataset.dot) - 1)));
+            wrapper.addEventListener('mouseleave', () => {
+                isDragging = false;
+            });
+
+            // Навигация точками
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    goToStage(parseInt(dot.dataset.dot) - 1);
+                });
+            });
         }
 
         // Сохранение чекбоксов
@@ -990,7 +1030,7 @@
         });
 
         // ==========================================
-        // 8. НОВОСТИ
+        // 8. НОВОСТИ (выезжающий текст вместо alert)
         // ==========================================
         const newsData = {
             "category": "Новости университета",
@@ -998,38 +1038,32 @@
                 {
                     "date": "Пятница, 15 мая 2026 16:03",
                     "title": "На площадке лектория «ZИНОВЬЕВ» состоится презентация научных и учебно-методических изданий преподавателей-филологов КГУ",
-                    "text": "21 мая в 15:00 в Зиновьевском зале Костромской областной универсальной научной библиотеки (ул. Советская, 73) состоится очередное заседание лектория «ZИНОВЬЕВ». На площадке лектория пройдет презентация научных и учебно-методических изданий преподавателей-филологов Костромского государственного университета.",
+                    "text": "21 мая в 15:00 в Зиновьевском зале Костромской областной универсальной научной библиотеки (ул. Советская, 73) состоится очередное заседание лектория «ZИНОВЬЕВ». На площадке лектория пройдет презентация научных и учебно-методических изданий преподавателей-филологов Костромского государственного университета. Модераторы: – Алена Николаевна Романова, кандидат филологических наук, доцент КГУ; – Алла Эдуардовна Павлова, кандидат филологических наук, доцент КГУ; – Галина Дмитриевна Неганова, кандидат культурологии, доцент КГУ.",
                     "tags": ["анонсы", "КГУ", "КГУ_Кострома"]
                 },
                 {
                     "date": "Пятница, 15 мая 2026 15:17",
                     "title": "Сто тысяч рублей — за лучший студенческий проект по созданию цифрового помощника по адаптации первокурсников в вузе",
-                    "text": "В Институте «Высшая ИТ-школа» Костромского университета стартовал хакатон: студенты создают цифрового помощника для адаптации первокурсников. Главный партнёр хакатона — компания Т2.",
+                    "text": "В Институте «Высшая ИТ-школа» Костромского университета стартовал хакатон: студенты создают цифрового помощника для адаптации первокурсников. Главный партнёр хакатона — компания Т2. В течение двух дней студенческие команды будут работать над созданием инновационного проекта — цифрового помощника, призванного облегчить адаптацию первокурсников к учебному процессу: разобраться в учебных программах, расписании, сервисах и возможностях, которые предоставляет вуз.",
                     "tags": ["активная молодёжь", "Высшая ИТшкола", "КГУ", "студенческая жизнь"]
                 },
                 {
                     "date": "Пятница, 15 мая 2026 14:58",
                     "title": "Форум для абитуриентов в КГУ: шаг к будущей профессии",
-                    "text": "В Костромском государственном университете прошёл форум для абитуриентов, который собрал школьников, стоящих на пороге выбора будущей профессии.",
+                    "text": "В Костромском государственном университете прошёл форум для абитуриентов, который собрал школьников, стоящих на пороге выбора будущей профессии. Мероприятие стало уникальной площадкой для живого общения с преподавателями и студентами, знакомства с направлениями подготовки и погружения в атмосферу университетской жизни.",
                     "tags": ["абитуриентам", "КГУ", "КГУ_Кострома"]
                 },
                 {
                     "date": "Четверг, 14 мая 2026 17:00",
                     "title": "СОЗДАНИЕ РУССКОЙ БАЛЕТНОЙ ШКОЛЫ",
-                    "text": "15 мая 1738 года был принят Указ императрицы Анны Иоанновны об открытии «Танцевальной Ея Императорского Величества школы».",
+                    "text": "15 мая 1738 года был принят Указ императрицы Анны Иоанновны об открытии «Танцевальной Ея Императорского Величества школы». Эта дата считается датой хореографического рождения российского профессионального хореографического образования. Первый профессионального выпуск профессиональных кадров состоялся в 1741 году.",
                     "tags": ["100дат", "КГУ", "координационный центр КГУ"]
                 },
                 {
                     "date": "Среда, 13 мая 2026 14:26",
-                    "title": "Будущее ювелирного дизайна — в надёжных руках",
-                    "text": "С 20 по 25 апреля 2026 года в Санкт-Петербургском государственном университете промышленных технологий и дизайна состоялся IX Международный конгресс «Дизайн. Материалы. Технология».",
+                    "title": "Будущее ювелирного дизайна — в надёжных руках: студенты Института промышленных технологий и дизайна на IX Международном конгрессе",
+                    "text": "С 20 по 25 апреля 2026 года в Санкт-Петербургском государственном университете промышленных технологий и дизайна состоялся IX Международный конгресс «Дизайн. Материалы. Технология». Это событие традиционно собирает ведущих специалистов, молодых дизайнеров, художников по металлу и исследователей в области технической эстетики и художественной обработки материалов.",
                     "tags": ["КГУ", "ИПТД"]
-                },
-                {
-                    "date": "Среда, 13 мая 2026 10:42",
-                    "title": "В КГУ завершилась работа II весенней научно-методической сессии по математике",
-                    "text": "В Костромском университете прошли мероприятия заключительного этапа второй весенней научно-методической сессии по математике.",
-                    "tags": ["Высшая ИТшкола", "ИФМЕН", "КГУ"]
                 }
             ]
         };
@@ -1038,10 +1072,12 @@
             const newsGrid = document.getElementById('newsGrid');
             if (!newsGrid) return;
             newsGrid.innerHTML = '';
+            
             newsData.articles.forEach(article => {
                 const newsCard = document.createElement('div');
                 newsCard.className = 'news-card';
                 const formattedDate = article.date.split(' ').slice(0, 3).join(' ');
+                
                 newsCard.innerHTML = `
                     <div class="news-header">
                         <div class="news-date">${formattedDate}</div>
@@ -1050,18 +1086,19 @@
                     </div>
                     <div class="news-content">
                         <div class="news-text">${article.text.substring(0, 200)}${article.text.length > 200 ? '...' : ''}</div>
-                        <a href="#" class="read-more" data-full-text="${article.text.replace(/"/g, '&quot;')}">Читать далее →</a>
+                        <div class="news-full-text">${article.text}</div>
                     </div>
                 `;
+                
+                const header = newsCard.querySelector('.news-header');
+                header.addEventListener('click', () => {
+                    newsCard.classList.toggle('active');
+                });
+                
                 newsGrid.appendChild(newsCard);
             });
-            document.querySelectorAll('.read-more').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    alert(btn.dataset.fullText);
-                });
-            });
         }
+        
         renderNews();
 
         // ==========================================
