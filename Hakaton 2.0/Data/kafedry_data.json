@@ -1,0 +1,151 @@
+{
+  "pageTitle": "Кафедры",
+  "url": "https://itschool.kosgos.ru/department",
+  "departments": [
+    {
+      "name": "Информационные системы и технологии",
+      "staff": [],
+      "directions": []
+    },
+    {
+      "name": "Профессорско-преподавательский состав",
+      "staff": [
+        "Доктор технических наук, доцент",
+        "Кандидат технических наук",
+        "Доцент кафедры",
+        "Кандидат технических наук",
+        "Доцент кафедры",
+        "Кандидат технических наук",
+        "Доцент кафедры",
+        "Кандидат технических наук",
+        "Доцент кафедры",
+        "Кандидат технических наук",
+        "Доцент кафедры",
+        "Старший преподаватель кафедры",
+        "Старший преподаватель кафедры",
+        "Кандидат технических наук",
+        "Доцент кафедры",
+        "Ассистент кафедры",
+        "Доктор технических наук, доцент",
+        "Профессор кафедры",
+        "Доктор технических наук, доцент",
+        "Профессор кафедры",
+        "Кандидат технических наук",
+        "Доцент кафедры",
+        "Кандидат технических наук",
+        "Доцент кафедры",
+        "Кандидат технических наук",
+        "Доцент кафедры",
+        "Кандидат технических наук",
+        "Доцент кафедры"
+      ],
+      "directions": [
+        {
+          "name": "l.kiprina@kosgos.ru",
+          "url": "mailto:l.kiprina@kosgos.ru"
+        },
+        {
+          "name": "i.barilo@kosgos.ru",
+          "url": "mailto:i.barilo@kosgos.ru"
+        },
+        {
+          "name": "y.lustgarten@kosgos.ru",
+          "url": "mailto:y.lustgarten@kosgos.ru"
+        },
+        {
+          "name": "m.krasavina@kosgos.ru",
+          "url": "mailto:m.krasavina@kosgos.ru"
+        },
+        {
+          "name": "n.pryadkina@kosgos.ru",
+          "url": "mailto:n.pryadkina@kosgos.ru"
+        },
+        {
+          "name": "s.smirnova@kosgos.ru",
+          "url": "mailto:s.smirnova@kosgos.ru"
+        },
+        {
+          "name": "e.demchinova@kosgos.ru",
+          "url": "mailto:e.demchinova@kosgos.ru"
+        },
+        {
+          "name": "z.dorokhova@kosgos.ru",
+          "url": "mailto:z.dorokhova@kosgos.ru"
+        },
+        {
+          "name": "a.orlov@kosgos.ru",
+          "url": "mailto:a.orlov@kosgos.ru"
+        },
+        {
+          "name": "a.loginova@kosgos.ru",
+          "url": "mailto:a.loginova@kosgos.ru"
+        },
+        {
+          "name": "u.silenok@kosgos.ru",
+          "url": "mailto:u.silenok@kosgos.ru"
+        },
+        {
+          "name": "a.denisov@kosgos.ru",
+          "url": "mailto:a.denisov@kosgos.ru"
+        },
+        {
+          "name": "i.panin@kosgos.ru",
+          "url": "mailto:i.panin@kosgos.ru"
+        },
+        {
+          "name": "a.druzhinina@kosgos.ru",
+          "url": "mailto:a.druzhinina@kosgos.ru"
+        },
+        {
+          "name": "e.kirillova@kosgos.ru",
+          "url": "mailto:e.kirillova@kosgos.ru"
+        },
+        {
+          "name": "a.chuvilyaeva@kosgos.ru",
+          "url": "mailto:a.chuvilyaeva@kosgos.ru"
+        },
+        {
+          "name": "a.mozohin@kosgos.ru",
+          "url": "mailto:a.mozohin@kosgos.ru"
+        }
+      ]
+    },
+    {
+      "name": "Направления подготовки",
+      "staff": [
+        "Руководство разработкой программного обеспечения информационных систем",
+        "Разработка программного обеспечения информационных систем",
+        "Подготовка специалистов по поддержке и развитию ИТ-инфраструктуры",
+        "Информационные технологии в медиаиндустрии"
+      ],
+      "directions": [
+        {
+          "name": "Руководство разработкой программного обеспечения информационных систем",
+          "url": "https://itschool.kosgos.ru/programms?id=1"
+        },
+        {
+          "name": "Разработка программного обеспечения информационных систем",
+          "url": "https://itschool.kosgos.ru/programms?id=2"
+        },
+        {
+          "name": "Подготовка специалистов по поддержке и развитию ИТ-инфраструктуры",
+          "url": "https://itschool.kosgos.ru/programms?id=4"
+        },
+        {
+          "name": "Информационные технологии в медиаиндустрии",
+          "url": "https://itschool.kosgos.ru/programms?id=5"
+        }
+      ]
+    },
+    {
+      "name": "Защиты информации",
+      "staff": [],
+      "directions": []
+    },
+    {
+      "name": "Прикладной математики и информатики",
+      "staff": [],
+      "directions": []
+    }
+  ]
+}

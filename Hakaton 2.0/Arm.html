@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Военный учебный центр — ЭИОС КГУ</title>
+    <link rel="icon" href="images/favicon.jfif" type="image/x-icon">
+    <style>
+        /* ==========================================================================
+           ======             ПОЛНЫЙ CSS ДЛЯ ВОЕНКИ                       ======
+           ========================================================================= */
+        
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* VARIABLES */
+        :root {
+            --bg: #f4f7fb;
+            --card: #ffffff;
+            --text: #1e293b;
+            --border: #dbe3ee;
+            --accent: #2563eb;
+            --footer: #1e1e1e;
+        }
+
+        body.dark {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --border: #334155;
+            --accent: #3b82f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            min-height: 280px;
+            background-image: url("images/kgu.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, .55);
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: relative;
+            z-index: 10;
+            max-width: 1350px;
+            margin: 0 auto;
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .header-top-row {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-bottom-row {
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* КНОПКИ */
+        .ai-assistant-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, .2);
+            background: rgba(255, 255, 255, .1);
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .ai-assistant-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .ai-assistant-btn svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        #menu-toggle {
+            display: none;
+        }
+
+        .burger {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            padding: 0 12px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, .12);
+            border: 1px solid rgba(255, 255, 255, .15);
+            backdrop-filter: blur(10px);
+            flex-shrink: 0;
+        }
+
+        .burger span {
+            width: 100%;
+            height: 2px;
+            border-radius: 10px;
+            background: #fff;
+            transition: 0.3s;
+            display: block;
+        }
+
+        #menu-toggle:checked ~ .header .burger span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        #menu-toggle:checked ~ .header .burger span:nth-child(2) { opacity: 0; }
+        #menu-toggle:checked ~ .header .burger span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* ПОИСК */
+        .search {
+            height: 48px;
+            display: flex;
+            align-items: center;
+            border-radius: 14px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, .12);
+            border: 1px solid rgba(255, 255, 255, .15);
+            backdrop-filter: blur(10px);
+        }
+
+        .search input {
+            flex: 1;
+            height: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 0 16px;
+            color: #fff;
+            font-size: 15px;
+        }
+
+        .search input::placeholder { color: rgba(255, 255, 255, .65); }
+        .search button {
+            width: 50px;
+            height: 100%;
+            border: none;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .search svg { width: 20px; height: 20px; }
+
+        /* ТЕМА */
+        .theme-switch {
+            width: 64px;
+            min-width: 64px;
+            height: 32px;
+            border-radius: 30px;
+            position: relative;
+            cursor: pointer;
+            border: 2px solid #fff;
+            background: rgba(255, 255, 255, .12);
+            flex-shrink: 0;
+        }
+
+        .theme-switch input { display: none; }
+        .switch-ball {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #fff;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: .2s;
+        }
+        #theme-toggle:checked + .switch-ball { transform: translateX(32px); }
+
+        .sun-icon, .moon-icon {
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            stroke-width: 2;
+            fill: none;
+        }
+        .sun-icon { left: 7px; stroke: gold; }
+        .moon-icon { right: 7px; stroke: silver; }
+
+        /* МЕНЮ */
+        .desktop-menu {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            width: 100%;
+            padding: 5px 0;
+        }
+
+        .desktop-menu a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+        }
+
+        .desktop-menu a:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-1px);
+        }
+
+        /* МОБИЛЬНОЕ МЕНЮ */
+        .burger-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 15; opacity: 0; pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .burger-overlay.active { opacity: 1; pointer-events: all; }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0; left: -280px; width: 280px; height: 100vh;
+            background: rgba(15, 23, 42, .98);
+            z-index: 20; padding: 80px 20px 30px;
+            display: flex; flex-direction: column; gap: 5px;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+        }
+        #menu-toggle:checked ~ .mobile-menu { left: 0; }
+
+        .mobile-menu a {
+            display: block; padding: 14px 16px;
+            text-decoration: none; color: white;
+            font-size: 15px; font-weight: 500; border-radius: 10px;
+            transition: background 0.2s;
+        }
+        .mobile-menu a:hover { background: rgba(255, 255, 255, .1); }
+
+        /* КОНТЕЙНЕР */
+        .container {
+            width: 100%;
+            max-width: 1350px;
+            margin: 20px auto;
+            padding: 0 16px;
+        }
+
+        /* БЛОК ДЛЯ МОДУЛЕЙ */
+        .Info-Block {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* ===== СТИЛИ ДЛЯ МОДУЛЯ ARMY (подгрузка данных) ===== */
+        
+        /* Блоки информации из JSON */
+        .info-block {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .info-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-block h1 {
+            font-size: 24px;
+            color: var(--accent);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .info-block p {
+            font-size: 15px;
+            color: var(--text);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .info-block strong {
+            color: var(--accent);
+        }
+
+        /* Списки из JSON */
+        .info-block ul {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .info-block li {
+            font-size: 14px;
+            color: var(--text);
+            padding: 10px 0 10px 28px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .info-block li:last-child {
+            border-bottom: none;
+        }
+
+        .info-block li::before {
+            content: "🎯";
+            position: absolute;
+            left: 0;
+            top: 10px;
+            font-size: 14px;
+        }
+
+        /* Ссылки */
+        .info-block a {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            padding: 8px 16px;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 10px;
+            margin: 5px 5px 5px 0;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .info-block a:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Контейнеры для преподавателей */
+        .dir-cont,
+        .other-cont {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .dir-cont {
+            margin-bottom: 40px;
+        }
+
+        .dir-cont::before {
+            content: "👑 Руководство военного учебного центра";
+            grid-column: 1 / -1;
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--accent);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .other-cont::before {
+            content: "👨‍🏫 Преподавательский состав";
+            grid-column: 1 / -1;
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--accent);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+            margin-bottom: 10px;
+        }
+
+        /* Карточка преподавателя */
+        .people-cont {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .people-cont:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .people-cont h3 {
+            font-size: 18px;
+            color: var(--text);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .people-cont p {
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 6px;
+        }
+
+        .people-cont p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Выделение для руководства */
+        .dir-cont .people-cont {
+            background: linear-gradient(135deg, var(--bg) 0%, rgba(37, 99, 235, 0.05) 100%);
+            border-left: 4px solid var(--accent);
+        }
+
+        .dir-cont .people-cont h3 {
+            color: var(--accent);
+        }
+
+        /* НАВБАР */
+        .navbar {
+            position: fixed; display: flex; gap: 6px; z-index: 50;
+            background: var(--footer); border-radius: 20px; padding: 8px 10px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+        }
+        .nav-btn {
+            width: 44px; height: 44px; border-radius: 14px; border: none;
+            background: rgba(255, 255, 255, 0.08); color: #fff; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; transition: 0.2s;
+            text-decoration: none;
+        }
+        .nav-btn:hover { background: rgba(255, 255, 255, 0.2); transform: scale(1.05); }
+        .nav-btn svg { width: 22px; height: 22px; }
+
+        /* МОДАЛКА КАРТЫ */
+        .map-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7); z-index: 200; display: flex;
+            align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: .3s;
+        }
+        .map-modal.active { opacity: 1; pointer-events: all; }
+        .map-modal-content { position: relative; width: 90%; height: 75%; border-radius: 16px; overflow: hidden; background: #fff; }
+        .map-modal-content iframe { width: 100%; height: 100%; border: none; }
+        .map-close {
+            position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; border-radius: 50%;
+            border: none; background: rgba(0, 0, 0, 0.6); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;
+        }
+
+        /* ИНФО-ПАНЕЛЬ */
+        .info-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5); z-index: 180; opacity: 0; pointer-events: none; transition: .3s;
+        }
+        .info-overlay.active { opacity: 1; pointer-events: all; }
+        .info-panel {
+            position: fixed; top: 0; right: -300px; width: 280px; height: 100vh;
+            background: var(--card); z-index: 190; padding: 60px 20px 30px; transition: right 0.3s ease;
+            display: flex; flex-direction: column; gap: 12px; box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
+        }
+        .info-panel.active { right: 0; }
+        .info-close {
+            position: absolute; top: 14px; right: 14px; width: 34px; height: 34px; border-radius: 50%;
+            border: none; background: var(--border); cursor: pointer; display: flex; align-items: center; justify-content: center;
+        }
+        .info-close svg { width: 18px; height: 18px; stroke: var(--text); }
+        .info-links { display: flex; flex-direction: column; gap: 8px; }
+        .info-link {
+            padding: 12px 14px; background: var(--bg); border-radius: 12px; text-decoration: none;
+            color: var(--text); font-weight: 500; border: 1px solid var(--border); transition: 0.2s;
+        }
+        .info-link:hover { background: var(--border); transform: translateX(4px); }
+
+        /* ФУТЕР */
+        .footer { margin-top: auto; background: var(--footer); }
+        .footer-container { max-width: 1200px; margin: 0 auto; padding: 30px 16px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .footer-column { display: flex; flex-direction: column; gap: 12px; }
+        .footer-title { width: fit-content; padding-bottom: 6px; border-bottom: 2px solid orange; color: white; font-size: 16px; }
+        .social-links, .support-links { display: flex; flex-direction: column; gap: 8px; }
+        .social-link, .support-link { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #d0d0d0; transition: .2s; font-size: 14px; }
+        .social-link:hover, .support-link:hover { color: orange; }
+        .social-link img { width: 20px; height: 20px; }
+        .footer-bottom { padding: 15px; border-top: 1px solid #444; text-align: center; color: rgba(255, 255, 255, .6); font-size: 12px; }
+
+        /* АДАПТИВ */
+        @media (min-width: 901px) {
+            .burger { display: none !important; }
+            .search { flex: 1; max-width: 500px; margin: 0 auto; }
+            .navbar { right: 16px; top: 50%; transform: translateY(-50%); flex-direction: column; bottom: auto; left: auto; }
+            .container { padding-right: 80px; }
+        }
+
+        @media (max-width: 900px) {
+            .desktop-menu { display: none !important; }
+            .header { padding: 12px 16px; gap: 12px; }
+            .header-top-row .search { display: none !important; }
+            .burger { display: flex; }
+            .header-bottom-row { display: flex !important; width: 100% !important; }
+            .header .search { display: flex !important; width: 100% !important; max-width: 100% !important; }
+            .navbar { bottom: 12px; left: 50%; transform: translateX(-50%); flex-direction: row; right: auto; top: auto; }
+            .container { padding-bottom: 80px; }
+            .footer { padding-bottom: 75px; }
+            .footer-container { grid-template-columns: 1fr; gap: 20px; }
+            .dir-cont, .other-cont { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 0 12px; margin: 12px auto; }
+            .Info-Block { padding: 16px; }
+            .info-block { padding: 16px; }
+            .info-block h1 { font-size: 20px; }
+            .dir-cont::before, .other-cont::before { font-size: 18px; }
+            .people-cont { padding: 16px; }
+            .people-cont h3 { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="burger-overlay" id="burgerOverlay"></div>
+    <div class="info-overlay" id="infoOverlay"></div>
+
+    <header class="hero">
+        <div class="overlay"></div>
+        
+        <input type="checkbox" id="menu-toggle">
+        
+        <div class="header">
+            <div class="header-top-row">
+                <a href="main.html" class="logo">
+                    <img src="images/kgu_logo.jpg" alt="Логотип">
+                </a>
+                
+                <label for="menu-toggle" class="burger" id="burgerBtn">
+                    <span></span><span></span><span></span>
+                </label>
+
+                <div class="search">
+                    <input type="text" id="searchInput" placeholder="Поиск по сайту...">
+                    <button>
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+                            <path d="M20 20L17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Кнопка ИИ Помощник - ссылка на bot.html -->
+                <a href="bot.html" class="ai-assistant-btn" title="ИИ Помощник">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 8V4H8"></path>
+                        <rect x="5" y="8" width="14" height="11" rx="2"></rect>
+                        <path d="M9 13h.01"></path>
+                        <path d="M15 13h.01"></path>
+                    </svg>
+                </a>
+
+                <label class="theme-switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="switch-ball"></span>
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </label>
+            </div>
+
+            <div class="header-bottom-row">
+                <div class="mobile-search-container"></div>
+                
+                <nav class="desktop-menu">
+                    <a href="main.html">Главная</a>
+                    <a href="Arm.html" style="background: rgba(255,255,255,0.2); color: #fff;">Военный центр</a>
+                    <a href="prepody.html">Преподаватели</a>
+                    <a href="programmy.html">Образовательные программы</a>
+                    <a href="stipka.html">Стипендия</a>
+                    <a href="uniki.html">Корпуса</a>
+                </nav>
+            </div>
+        </div>
+        
+        <nav class="mobile-menu">
+            <a href="main.html">Главная</a>
+            <a href="Arm.html" style="background: rgba(255,255,255,0.1);">Военный центр</a>
+            <a href="prepody.html">Преподаватели</a>
+            <a href="programmy.html">Образовательные программы</a>
+            <a href="stipka.html">Стипендия</a>
+            <a href="uniki.html">Корпуса</a>
+        </nav>
+    </header>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ (информация подгружается модулями) -->
+    <main class="container">
+        <div class="Info-Block" id="armyInfoBlock"></div>
+    </main>
+
+    <!-- НАВБАР -->
+    <nav class="navbar" id="navbar">
+        <button class="nav-btn" id="btnMap" title="Карты">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/>
+                <path d="M8 2v16M16 6v16"/>
+            </svg>
+        </button>
+        <button class="nav-btn" id="btnScrollUp" title="Наверх">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 19V5M5 12l7-7 7 7"/>
+            </svg>
+        </button>
+        <a href="main.html" class="nav-btn" title="Главная">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+        </a>
+        <button class="nav-btn" id="btnScrollDown" title="Вниз">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </button>
+        <button class="nav-btn" id="btnInfo" title="Инфо">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="16" x2="12" y2="12"/>
+                <line x1="12" y1="8" x2="12.01" y2="8"/>
+            </svg>
+        </button>
+    </nav>
+
+    <!-- МОДАЛКА КАРТЫ -->
+    <div class="map-modal" id="mapModal">
+        <div class="map-modal-content">
+            <button class="map-close" id="mapClose">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+            <iframe id="mapFrame" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- ИНФО-ПАНЕЛЬ -->
+    <div class="info-panel" id="infoPanel">
+        <button class="info-close" id="infoClose">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+        </button>
+        <h3>Полезное</h3>
+        <div class="info-links">
+            <a href="#" class="info-link">📅 Расписание</a>
+            <a href="#" class="info-link">🎓 СДО</a>
+            <a href="#" class="info-link">🎮 Игра</a>
+            <a href="#" class="info-link">📚 Библиотека</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4 class="footer-title">Мы в соцсетях</h4>
+                <div class="social-links">
+                    <a href="https://vk.com/kostroma_university" target="_blank" class="social-link">
+                        <img src="images/vk.webp" alt="VK" class="social-icon">
+                        ВКонтакте
+                    </a>
+                    <a href="https://t.me/KGU_Kostroma" target="_blank" class="social-link">
+                        <img src="images/tg.png" alt="Telegram" class="social-icon">
+                        Telegram
+                    </a>
+                    <a href="https://max.ru/kostroma_university" target="_blank" class="social-link">
+                        <img src="images/Max_logo_2025.png" alt="Max" class="social-icon">
+                        Max
+                    </a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4 class="footer-title">Поддержка</h4>
+                <div class="support-links">
+                    <a href="#" class="support-link">Помощь</a>
+                    <a href="#" class="support-link">Частые вопросы</a>
+                    <a href="#" class="support-link">Пользовательское соглашение</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-text">© 2026 Интеллектуалы</p>
+        </div>
+    </footer>
+
+    <!-- ПОДКЛЮЧЕНИЕ МОДУЛЕЙ И JS -->
+    <script>
+        // ====== 1. СКВОЗНАЯ СИНХРОНИЗАЦИЯ И СОХРАНЕНИЕ ТЕМЫ ======
+function initThemeEngine() {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (!themeToggle) return;
+
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark');
+        themeToggle.checked = true;
+    } else {
+        document.body.classList.remove('dark');
+        themeToggle.checked = false;
+    }
+
+    themeToggle.addEventListener('change', () => {
+        if (themeToggle.checked) {
+            document.body.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.body.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        }
+    });
+}
+
+// ====== 2. ГЛОБАЛЬНЫЙ АДАПТИВ СТРОКИ ПОИСКА В ХЕДЕРЕ ======
+function relocateSearch() {
+    const searchElement = document.querySelector('.search');
+    const topRow = document.querySelector('.header-top-row');
+    const bottomRow = document.querySelector('.header-bottom-row');
+
+    if (!searchElement || !topRow || !bottomRow) return;
+
+    if (window.innerWidth <= 900) {
+        if (searchElement.parentElement !== bottomRow) {
+            bottomRow.appendChild(searchElement);
+        }
+    } else {
+        if (searchElement.parentElement !== topRow) {
+            const aiBtn = document.querySelector('.ai-assistant-btn');
+            if (aiBtn) {
+                topRow.insertBefore(searchElement, aiBtn);
+            } else {
+                topRow.appendChild(searchElement);
+            }
+        }
+    }
+}
+
+// ====== 3. ИНТЕРАКТИВНОЕ РАЗВЕРТЫВАНИЕ КАРТОЧЕК КОРПУСОВ ======
+function initUnikiAccordion() {
+    const cards = document.querySelectorAll('.unic-card');
+
+    cards.forEach(card => {
+        const header = card.querySelector('.unic-header');
+        const details = card.querySelector('.unic-details');
+
+        header.addEventListener('click', () => {
+            const isOpen = card.classList.contains('active');
+
+            // Сначала закрываем все остальные открытые карточки (эффект аккордеона)
+            cards.forEach(c => {
+                c.classList.remove('active');
+                c.querySelector('.unic-details').style.maxHeight = null;
+            });
+
+            // Если кликнутая карточка была закрыта — плавно открываем её
+            if (!isOpen) {
+                card.classList.add('active');
+                // Вычисляем полную высоту контента внутри скрытого блока
+                details.style.maxHeight = details.scrollHeight + "px";
+            }
+        });
+    });
+}
+
+// ====== 4. ЕДИНАЯ ТОЧКА ЗАПУСКА ======
+document.addEventListener('DOMContentLoaded', () => {
+    initThemeEngine();      // Ставим тему сразу, чтобы избежать моргания
+    initUnikiAccordion();  // Врубаем аккордеон для корпусов
+    relocateSearch();       // Выстраиваем шапку под экран
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    // ==========================================
+    // 1. ТЕМА (ночной режим)
+    // ==========================================
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.checked = localStorage.getItem('dark-theme') === 'true';
+        if (themeToggle.checked) document.body.classList.add('dark');
+
+        themeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark', themeToggle.checked);
+            localStorage.setItem('dark-theme', themeToggle.checked);
+        });
+    }
+
+    // ==========================================
+    // 2. БУРГЕР-МЕНЮ (выезд слева)
+    // ==========================================
+    const menuToggle = document.getElementById('menu-toggle');
+    const burgerOverlay = document.getElementById('burgerOverlay');
+
+    function closeBurger() {
+        if (menuToggle) menuToggle.checked = false;
+        if (burgerOverlay) burgerOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (menuToggle) {
+        menuToggle.addEventListener('change', function() {
+            if (this.checked) {
+                if (burgerOverlay) burgerOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                if (burgerOverlay) burgerOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+
+    if (burgerOverlay) {
+        burgerOverlay.addEventListener('click', closeBurger);
+    }
+
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+        link.addEventListener('click', closeBurger);
+    });
+
+    // ==========================================
+    // 3. НАВБАР: КАРТЫ С МЕТКАМИ КГУ (Пункт 2)
+    // ==========================================
+    const btnMap = document.getElementById('btnMap');
+    const mapModal = document.getElementById('mapModal');
+    const mapClose = document.getElementById('mapClose');
+    const mapFrame = document.getElementById('mapFrame');
+    
+    // Сюда мы подставим кастомную карту, когда пришлешь адреса корпусов!
+    const yandexMapUrl = 'https://yandex.ru/map-widget/v1/?ll=40.9264%2C57.7679&z=13&l=map';
+
+    if (btnMap && mapModal && mapClose && mapFrame) {
+        btnMap.addEventListener('click', () => {
+            mapFrame.src = yandexMapUrl;
+            mapModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        function closeMap() {
+            mapModal.classList.remove('active');
+            mapFrame.src = '';
+            document.body.style.overflow = '';
+        }
+
+        mapClose.addEventListener('click', closeMap);
+        mapModal.addEventListener('click', (e) => {
+            if (e.target === mapModal) closeMap();
+        });
+    }
+
+    // ==========================================
+    // 4. НАВБАР: СКРОЛЛ ВВЕРХ
+    // ==========================================
+    const btnScrollUp = document.getElementById('btnScrollUp');
+    if (btnScrollUp) {
+        btnScrollUp.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // ==========================================
+    // 5. НАВБАР: СКРОЛЛ ВНИЗ
+    // ==========================================
+    const btnScrollDown = document.getElementById('btnScrollDown');
+    if (btnScrollDown) {
+        btnScrollDown.addEventListener('click', () => {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        });
+    }
+
+    // ==========================================
+    // 6. НАВБАР: ИНФО-ПАНЕЛЬ
+    // ==========================================
+    const btnInfo = document.getElementById('btnInfo');
+    const infoPanel = document.getElementById('infoPanel');
+    const infoOverlay = document.getElementById('infoOverlay');
+    const infoClose = document.getElementById('infoClose');
+
+    function openInfo() {
+        if (infoPanel) infoPanel.classList.add('active');
+        if (infoOverlay) infoOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeInfo() {
+        if (infoPanel) infoPanel.classList.remove('active');
+        if (infoOverlay) infoOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (btnInfo) btnInfo.addEventListener('click', openInfo);
+    if (infoClose) infoClose.addEventListener('click', closeInfo);
+    if (infoOverlay) infoOverlay.addEventListener('click', closeInfo);
+
+    // ==========================================
+    // 7. ПОЧИНЕННЫЕ КВЕСТЫ: СВАЙПЫ (Пункт 1)
+    // ==========================================
+    const wrapper = document.getElementById('questsWrapper');
+    const dots = document.querySelectorAll('.dot');
+
+    if (wrapper && dots.length > 0) {
+        let currentStage = 0;
+        const totalStages = dots.length;
+
+        function goToStage(index) {
+            if (index < 0 || index >= totalStages) return;
+            currentStage = index;
+            wrapper.style.transform = `translateX(-${currentStage * 100}%)`;
+            dots.forEach(d => d.classList.remove('active'));
+            dots[currentStage].classList.add('active');
+        }
+
+        // Логика Touch-свайпов для телефонов
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        wrapper.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        wrapper.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50; // Чувствительность свайпа в пикселях
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    goToStage(currentStage + 1); // Свайп влево -> следующий слайд
+                } else {
+                    goToStage(currentStage - 1); // Свайп вправо -> предыдущий слайд
+                }
+            }
+        }
+
+        // Логика Drag-свайпов мышкой на ПК
+        let isDragging = false;
+        let mouseStartX = 0;
+
+        wrapper.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            mouseStartX = e.screenX;
+        });
+
+        wrapper.addEventListener('mouseup', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            const diff = mouseStartX - e.screenX;
+            const dragThreshold = 50;
+
+            if (Math.abs(diff) > dragThreshold) {
+                if (diff > 0) goToStage(currentStage + 1);
+                else goToStage(currentStage - 1);
+            }
+        });
+
+        wrapper.addEventListener('mouseleave', () => {
+            isDragging = false;
+        });
+
+        // Навигация кнопками-точками
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                goToStage(parseInt(dot.dataset.dot) - 1);
+            });
+        });
+    }
+
+    // Сохранение состояния чекбоксов в квестах
+    document.querySelectorAll('.quest-check').forEach((cb, i) => {
+        const key = `quest-check-${i}`;
+        cb.checked = localStorage.getItem(key) === 'true';
+        cb.addEventListener('change', () => {
+            localStorage.setItem(key, cb.checked);
+        });
+    });
+
+    // ==========================================
+    // 8. ESCAPE — закрыть всё активное
+    // ==========================================
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeBurger();
+            closeInfo();
+            const mapModal = document.getElementById('mapModal');
+            if (mapModal && mapModal.classList.contains('active')) {
+                mapModal.classList.remove('active');
+                const mapFrame = document.getElementById('mapFrame');
+                if (mapFrame) mapFrame.src = '';
+                document.body.style.overflow = '';
+            }
+        }
+    });
+});
+
+window.addEventListener('resize', relocateSearch);
+    </script>
+    
+    <script type="module" src="./Backand/Program.js"></script>
+    <script type="module" src="./Backand/Creater.js"></script>
+    <script type="module" src="./Backand/Army.js"></script>
+</body>
+</html>

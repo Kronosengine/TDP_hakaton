@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЭИОС КГУ</title>
+    <link rel="icon" href="images/favicon.jfif" type="image/x-icon">
+    <style>
+        /* ==========================================================================
+           ======             ПОЛНЫЙ CSS ДЛЯ ГЛАВНОЙ СТРАНИЦЫ            ======
+           ========================================================================= */
+        
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* VARIABLES */
+        :root {
+            --bg: #f4f7fb;
+            --card: #ffffff;
+            --text: #1e293b;
+            --border: #dbe3ee;
+            --accent: #2563eb;
+            --footer: #1e1e1e;
+        }
+
+        body.dark {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --border: #334155;
+            --accent: #3b82f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            min-height: 280px;
+            background-image: url("images/kgu.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, .55);
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: relative;
+            z-index: 10;
+            max-width: 1350px;
+            margin: 0 auto;
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .header-top-row {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-bottom-row {
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* КНОПКИ */
+        .ai-assistant-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, .2);
+            background: rgba(255, 255, 255, .1);
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .ai-assistant-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .ai-assistant-btn svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        #menu-toggle {
+            display: none;
+        }
+
+        .burger {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            padding: 0 12px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, .12);
+            border: 1px solid rgba(255, 255, 255, .15);
+            backdrop-filter: blur(10px);
+            flex-shrink: 0;
+        }
+
+        .burger span {
+            width: 100%;
+            height: 2px;
+            border-radius: 10px;
+            background: #fff;
+            transition: 0.3s;
+            display: block;
+        }
+
+        #menu-toggle:checked ~ .header .burger span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        #menu-toggle:checked ~ .header .burger span:nth-child(2) { opacity: 0; }
+        #menu-toggle:checked ~ .header .burger span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* ПОИСК */
+        .search {
+            height: 48px;
+            display: flex;
+            align-items: center;
+            border-radius: 14px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, .12);
+            border: 1px solid rgba(255, 255, 255, .15);
+            backdrop-filter: blur(10px);
+        }
+
+        .search input {
+            flex: 1;
+            height: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 0 16px;
+            color: #fff;
+            font-size: 15px;
+        }
+
+        .search input::placeholder { color: rgba(255, 255, 255, .65); }
+        .search button {
+            width: 50px;
+            height: 100%;
+            border: none;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .search svg { width: 20px; height: 20px; }
+
+        /* ТЕМА */
+        .theme-switch {
+            width: 64px;
+            min-width: 64px;
+            height: 32px;
+            border-radius: 30px;
+            position: relative;
+            cursor: pointer;
+            border: 2px solid #fff;
+            background: rgba(255, 255, 255, .12);
+            flex-shrink: 0;
+        }
+
+        .theme-switch input { display: none; }
+        .switch-ball {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #fff;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: .2s;
+        }
+        #theme-toggle:checked + .switch-ball { transform: translateX(32px); }
+
+        .sun-icon, .moon-icon {
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            stroke-width: 2;
+            fill: none;
+        }
+        .sun-icon { left: 7px; stroke: gold; }
+        .moon-icon { right: 7px; stroke: silver; }
+
+        /* МЕНЮ */
+        .desktop-menu {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            width: 100%;
+            padding: 5px 0;
+        }
+
+        .desktop-menu a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+        }
+
+        .desktop-menu a:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-1px);
+        }
+
+        /* МОБИЛЬНОЕ МЕНЮ */
+        .burger-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 15; opacity: 0; pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .burger-overlay.active { opacity: 1; pointer-events: all; }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0; left: -280px; width: 280px; height: 100vh;
+            background: rgba(15, 23, 42, .98);
+            z-index: 20; padding: 80px 20px 30px;
+            display: flex; flex-direction: column; gap: 5px;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+        }
+        #menu-toggle:checked ~ .mobile-menu { left: 0; }
+
+        .mobile-menu a {
+            display: block; padding: 14px 16px;
+            text-decoration: none; color: white;
+            font-size: 15px; font-weight: 500; border-radius: 10px;
+            transition: background 0.2s;
+        }
+        .mobile-menu a:hover { background: rgba(255, 255, 255, .1); }
+
+        /* КОНТЕЙНЕР */
+        .container {
+            width: 100%;
+            max-width: 1350px;
+            margin: 20px auto;
+            padding: 0 16px;
+        }
+
+        /* ===== КВЕСТЫ ===== */
+        .quests-section {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+
+        .quests-title {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .quests-wrapper {
+            display: flex;
+            overflow-x: hidden;
+            scroll-snap-type: x mandatory;
+            transition: transform 0.3s ease;
+            gap: 0;
+            width: 100%;
+        }
+
+        .quest-stage {
+            min-width: 100%;
+            scroll-snap-align: start;
+            box-sizing: border-box;
+            padding: 0 4px;
+        }
+
+        .quest-stage h3 {
+            font-size: 18px;
+            color: var(--accent);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 16px;
+        }
+
+        .checklist {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .checklist li {
+            padding: 12px 16px;
+            background: var(--bg);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .checklist li:has(input:checked) {
+            background: #e8f5e9;
+            text-decoration: line-through;
+            color: #388e3c;
+            border-color: #a5d6a7;
+        }
+        body.dark .checklist li:has(input:checked) {
+            background: #1b3a1b; color: #81c784; border-color: #2e7d32;
+        }
+
+        .checklist label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+        }
+        .quest-check { width: 18px; height: 18px; accent-color: var(--accent); flex-shrink: 0; }
+
+        .stage-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .dot.active { background: var(--accent); transform: scale(1.2); }
+
+        /* ===== НОВОСТИ ===== */
+        .news-section {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .news-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .news-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .news-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .news-header {
+            padding: 20px 20px 10px 20px;
+        }
+
+        .news-date {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .news-date::before {
+            content: "📅";
+            font-size: 12px;
+        }
+
+        .news-header h3 {
+            font-size: 18px;
+            color: var(--text);
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .news-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .news-tag {
+            font-size: 10px;
+            padding: 4px 10px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--accent);
+            border-radius: 20px;
+        }
+
+        .news-content {
+            padding: 0 20px 20px 20px;
+        }
+
+        .news-text {
+            font-size: 14px;
+            color: var(--text);
+            line-height: 1.5;
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .read-more {
+            font-size: 13px;
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: gap 0.2s;
+        }
+
+        .read-more:hover {
+            gap: 8px;
+        }
+
+        /* НАВБАР */
+        .navbar {
+            position: fixed; display: flex; gap: 6px; z-index: 50;
+            background: var(--footer); border-radius: 20px; padding: 8px 10px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+        }
+        .nav-btn {
+            width: 44px; height: 44px; border-radius: 14px; border: none;
+            background: rgba(255, 255, 255, 0.08); color: #fff; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; transition: 0.2s;
+            text-decoration: none;
+        }
+        .nav-btn:hover { background: rgba(255, 255, 255, 0.2); transform: scale(1.05); }
+        .nav-btn svg { width: 22px; height: 22px; }
+
+        /* МОДАЛКА КАРТЫ */
+        .map-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7); z-index: 200; display: flex;
+            align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: .3s;
+        }
+        .map-modal.active { opacity: 1; pointer-events: all; }
+        .map-modal-content { position: relative; width: 90%; height: 75%; border-radius: 16px; overflow: hidden; background: #fff; }
+        .map-modal-content iframe { width: 100%; height: 100%; border: none; }
+        .map-close {
+            position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; border-radius: 50%;
+            border: none; background: rgba(0, 0, 0, 0.6); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;
+        }
+
+        /* ИНФО-ПАНЕЛЬ */
+        .info-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5); z-index: 180; opacity: 0; pointer-events: none; transition: .3s;
+        }
+        .info-overlay.active { opacity: 1; pointer-events: all; }
+        .info-panel {
+            position: fixed; top: 0; right: -300px; width: 280px; height: 100vh;
+            background: var(--card); z-index: 190; padding: 60px 20px 30px; transition: right 0.3s ease;
+            display: flex; flex-direction: column; gap: 12px; box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
+        }
+        .info-panel.active { right: 0; }
+        .info-close {
+            position: absolute; top: 14px; right: 14px; width: 34px; height: 34px; border-radius: 50%;
+            border: none; background: var(--border); cursor: pointer; display: flex; align-items: center; justify-content: center;
+        }
+        .info-close svg { width: 18px; height: 18px; stroke: var(--text); }
+        .info-links { display: flex; flex-direction: column; gap: 8px; }
+        .info-link {
+            padding: 12px 14px; background: var(--bg); border-radius: 12px; text-decoration: none;
+            color: var(--text); font-weight: 500; border: 1px solid var(--border); transition: 0.2s;
+        }
+        .info-link:hover { background: var(--border); transform: translateX(4px); }
+
+        /* ФУТЕР */
+        .footer { margin-top: auto; background: var(--footer); }
+        .footer-container { max-width: 1200px; margin: 0 auto; padding: 30px 16px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .footer-column { display: flex; flex-direction: column; gap: 12px; }
+        .footer-title { width: fit-content; padding-bottom: 6px; border-bottom: 2px solid orange; color: white; font-size: 16px; }
+        .social-links, .support-links { display: flex; flex-direction: column; gap: 8px; }
+        .social-link, .support-link { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #d0d0d0; transition: .2s; font-size: 14px; }
+        .social-link:hover, .support-link:hover { color: orange; }
+        .social-link img { width: 20px; height: 20px; }
+        .footer-bottom { padding: 15px; border-top: 1px solid #444; text-align: center; color: rgba(255, 255, 255, .6); font-size: 12px; }
+
+        /* АДАПТИВ */
+        @media (min-width: 901px) {
+            .burger { display: none !important; }
+            .search { flex: 1; max-width: 500px; margin: 0 auto; }
+            .navbar { right: 16px; top: 50%; transform: translateY(-50%); flex-direction: column; bottom: auto; left: auto; }
+            .container { padding-right: 80px; }
+        }
+
+        @media (max-width: 900px) {
+            .desktop-menu { display: none !important; }
+            .header { padding: 12px 16px; gap: 12px; }
+            .header-top-row .search { display: none !important; }
+            .burger { display: flex; }
+            .header-bottom-row { display: flex !important; width: 100% !important; }
+            .header .search { display: flex !important; width: 100% !important; max-width: 100% !important; }
+            .navbar { bottom: 12px; left: 50%; transform: translateX(-50%); flex-direction: row; right: auto; top: auto; }
+            .container { padding-bottom: 80px; }
+            .footer { padding-bottom: 75px; }
+            .footer-container { grid-template-columns: 1fr; gap: 20px; }
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 0 12px; margin: 12px auto; }
+            .quests-section, .news-section { padding: 16px; }
+            .news-header h3 { font-size: 16px; }
+            .news-text { font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="burger-overlay" id="burgerOverlay"></div>
+    <div class="info-overlay" id="infoOverlay"></div>
+
+    <header class="hero">
+        <div class="overlay"></div>
+        
+        <input type="checkbox" id="menu-toggle">
+        
+        <div class="header">
+            <div class="header-top-row">
+                <a href="main.html" class="logo">
+                    <img src="images/kgu_logo.jpg" alt="Логотип">
+                </a>
+                
+                <label for="menu-toggle" class="burger" id="burgerBtn">
+                    <span></span><span></span><span></span>
+                </label>
+
+                <div class="search">
+                    <input type="text" id="searchInput" placeholder="Поиск по сайту...">
+                    <button>
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+                            <path d="M20 20L17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </div>
+
+                <a href="bot.html" class="ai-assistant-btn" title="ИИ Помощник" onclick="localStorage.setItem('previousPage', 'main.html')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 8V4H8"></path>
+                        <rect x="5" y="8" width="14" height="11" rx="2"></rect>
+                        <path d="M9 13h.01"></path>
+                        <path d="M15 13h.01"></path>
+                    </svg>
+                </a>
+
+                <label class="theme-switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="switch-ball"></span>
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </label>
+            </div>
+
+            <div class="header-bottom-row">
+                <div class="mobile-search-container"></div>
+                
+                <nav class="desktop-menu">
+                    <a href="main.html" style="background: rgba(255,255,255,0.2); color: #fff;">Главная</a>
+                    <a href="Arm.html">Военный центр</a>
+                    <a href="prepody.html">Преподаватели</a>
+                    <a href="programmy.html">Образовательные программы</a>
+                    <a href="stipka.html">Стипендия</a>
+                    <a href="uniki.html">Корпуса</a>
+                </nav>
+            </div>
+        </div>
+        
+        <nav class="mobile-menu">
+            <a href="main.html" style="background: rgba(255,255,255,0.1);">Главная</a>
+            <a href="Arm.html">Военный центр</a>
+            <a href="prepody.html">Преподаватели</a>
+            <a href="programmy.html">Образовательные программы</a>
+            <a href="stipka.html">Стипендия</a>
+            <a href="uniki.html">Корпуса</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="quests-section">
+            <h2 class="quests-title">🎯 Твои квесты первокурсника</h2>
+            <div class="quests-wrapper" id="questsWrapper">
+                <div class="quest-stage" data-stage="1">
+                    <div class="quest-stage-inner">
+                        <h3>Этап 1: Знакомство с кампусом</h3>
+                        <ul class="checklist">
+                            <li><label><input type="checkbox" class="quest-check"> Найти главный корпус на карте</label></li>
+                            <li><label><input type="checkbox" class="quest-check"> Посетить библиотеку</label></li>
+                            <li><label><input type="checkbox" class="quest-check"> Получить студенческий билет</label></li>
+                            <li><label><input type="checkbox" class="quest-check"> Зарегистрироваться в ЭИОС</label></li>
+                            <li><label><input type="checkbox" class="quest-check"> Познакомиться с куратором</label></li>
+                            <li><label><input type="checkbox" class="quest-check"> Сделать фото с памятником</label></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="quest-stage" data-stage="2">
+                    <div class="quest-stage-inner">
+                        <h3>Этап 2: Адаптация</h3>
+                        <ul class="checklist">
+                            <li><label><input type="checkbox" class="quest-check"> Найти расписание занятий</label></li>
+                            <li><label><input type="checkbox" class="quest-check"> Посетить первую лекцию</label></li>
+                            <li><label><input type="checkbox" class="quest-check"> Записаться в спортзал</label></li>
+                            <li><label><input type="checkbox" class="quest-check"> Взять учебники в библиотеке</label></li>
+                            <li><label><input type="checkbox" class="quest-check"> Познакомиться с одногруппниками</label></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="quest-stage" data-stage="3">
+                    <div class="quest-stage-inner">
+                        <h3>Этап 3: Погружение</h3>
+                        <ul class="checklist">
+                            <li><label><input type="checkbox" class="quest-check"> Выбрать научного руководителя</label></li>
+                            <li><label><input type="checkbox" class="quest-check"> Записаться в кружок/клуб</label></li>
+                            <li><label><input type="checkbox" class="quest-check"> Сдать первую сессию</label></li>
+                            <li><label><input type="checkbox" class="quest-check"> Участвовать в конференции</label></li>
+                            <li><label><input type="checkbox" class="quest-check"> Пройти практику</label></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="quest-stage" data-stage="4">
+                    <div class="quest-stage-inner">
+                        <h3>Этап 4: Профессионал</h3>
+                        <ul class="checklist">
+                            <li><label><input type="checkbox" class="quest-check"> Написать курсовую работу</label></li>
+                            <li><label><input type="checkbox" class="quest-check"> Выиграть грант</label></li>
+                            <li><label><input type="checkbox" class="quest-check"> Выступить с докладом</label></li>
+                            <li><label><input type="checkbox" class="quest-check"> Организовать мероприятие</label></li>
+                            <li><label><input type="checkbox" class="quest-check"> Получить повышенную стипендию</label></li>
+                            <li><label><input type="checkbox" class="quest-check"> Защитить диплом</label></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="stage-dots" id="stageDots">
+                <span class="dot active" data-dot="1"></span>
+                <span class="dot" data-dot="2"></span>
+                <span class="dot" data-dot="3"></span>
+                <span class="dot" data-dot="4"></span>
+            </div>
+        </section>
+
+        <section class="news-section">
+            <h2 class="news-title">📰 Новости университета</h2>
+            <div class="news-grid" id="newsGrid"></div>
+        </section>
+    </main>
+
+    <nav class="navbar" id="navbar">
+        <button class="nav-btn" id="btnMap" title="Карты">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/>
+                <path d="M8 2v16M16 6v16"/>
+            </svg>
+        </button>
+        <button class="nav-btn" id="btnScrollUp" title="Наверх">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 19V5M5 12l7-7 7 7"/>
+            </svg>
+        </button>
+        <a href="main.html" class="nav-btn" title="Главная">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+        </a>
+        <button class="nav-btn" id="btnScrollDown" title="Вниз">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </button>
+        <button class="nav-btn" id="btnInfo" title="Инфо">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="16" x2="12" y2="12"/>
+                <line x1="12" y1="8" x2="12.01" y2="8"/>
+            </svg>
+        </button>
+    </nav>
+
+    <div class="map-modal" id="mapModal">
+        <div class="map-modal-content">
+            <button class="map-close" id="mapClose">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+            <iframe id="mapFrame" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="info-panel" id="infoPanel">
+        <button class="info-close" id="infoClose">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+        </button>
+        <h3>Полезное</h3>
+        <div class="info-links">
+            <a href="#" class="info-link">📅 Расписание</a>
+            <a href="#" class="info-link">🎓 СДО</a>
+            <a href="#" class="info-link">🎮 Игра</a>
+            <a href="#" class="info-link">📚 Библиотека</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4 class="footer-title">Мы в соцсетях</h4>
+                <div class="social-links">
+                    <a href="https://vk.com/kostroma_university" target="_blank" class="social-link">
+                        <img src="images/vk.webp" alt="VK" class="social-icon">
+                        ВКонтакте
+                    </a>
+                    <a href="https://t.me/KGU_Kostroma" target="_blank" class="social-link">
+                        <img src="images/tg.png" alt="Telegram" class="social-icon">
+                        Telegram
+                    </a>
+                    <a href="https://max.ru/kostroma_university" target="_blank" class="social-link">
+                        <img src="images/Max_logo_2025.png" alt="Max" class="social-icon">
+                        Max
+                    </a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4 class="footer-title">Поддержка</h4>
+                <div class="support-links">
+                    <a href="#" class="support-link">Помощь</a>
+                    <a href="#" class="support-link">Частые вопросы</a>
+                    <a href="#" class="support-link">Пользовательское соглашение</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-text">© 2026 Интеллектуалы</p>
+        </div>
+    </footer>
+
+    <script>
+        // ==========================================
+        // 1. ТЕМА
+        // ==========================================
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.checked = localStorage.getItem('dark-theme') === 'true';
+            if (themeToggle.checked) document.body.classList.add('dark');
+
+            themeToggle.addEventListener('change', () => {
+                document.body.classList.toggle('dark', themeToggle.checked);
+                localStorage.setItem('dark-theme', themeToggle.checked);
+            });
+        }
+
+        // ==========================================
+        // 2. БУРГЕР-МЕНЮ
+        // ==========================================
+        const menuToggle = document.getElementById('menu-toggle');
+        const burgerOverlay = document.getElementById('burgerOverlay');
+
+        function closeBurger() {
+            if (menuToggle) menuToggle.checked = false;
+            if (burgerOverlay) burgerOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        if (menuToggle) {
+            menuToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    if (burgerOverlay) burgerOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    if (burgerOverlay) burgerOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+
+        if (burgerOverlay) burgerOverlay.addEventListener('click', closeBurger);
+        document.querySelectorAll('.mobile-menu a').forEach(link => link.addEventListener('click', closeBurger));
+
+        // ==========================================
+        // 3. КАРТА
+        // ==========================================
+        const btnMap = document.getElementById('btnMap');
+        const mapModal = document.getElementById('mapModal');
+        const mapClose = document.getElementById('mapClose');
+        const mapFrame = document.getElementById('mapFrame');
+        const yandexMapUrl = 'https://yandex.ru/map-widget/v1/?ll=40.9264%2C57.7679&z=13&l=map';
+
+        if (btnMap && mapModal && mapClose && mapFrame) {
+            btnMap.addEventListener('click', () => {
+                mapFrame.src = yandexMapUrl;
+                mapModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            const closeMap = () => {
+                mapModal.classList.remove('active');
+                mapFrame.src = '';
+                document.body.style.overflow = '';
+            };
+            mapClose.addEventListener('click', closeMap);
+            mapModal.addEventListener('click', (e) => { if (e.target === mapModal) closeMap(); });
+        }
+
+        // ==========================================
+        // 4. СКРОЛЛ
+        // ==========================================
+        const btnScrollUp = document.getElementById('btnScrollUp');
+        const btnScrollDown = document.getElementById('btnScrollDown');
+        if (btnScrollUp) btnScrollUp.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        if (btnScrollDown) btnScrollDown.addEventListener('click', () => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }));
+
+        // ==========================================
+        // 5. ИНФО-ПАНЕЛЬ
+        // ==========================================
+        const btnInfo = document.getElementById('btnInfo');
+        const infoPanel = document.getElementById('infoPanel');
+        const infoOverlay = document.getElementById('infoOverlay');
+        const infoClose = document.getElementById('infoClose');
+
+        function openInfo() {
+            infoPanel.classList.add('active');
+            infoOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeInfo() {
+            infoPanel.classList.remove('active');
+            infoOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        if (btnInfo) btnInfo.addEventListener('click', openInfo);
+        if (infoClose) infoClose.addEventListener('click', closeInfo);
+        if (infoOverlay) infoOverlay.addEventListener('click', closeInfo);
+
+        // ==========================================
+        // 6. КВЕСТЫ: СВАЙПЫ
+        // ==========================================
+        const wrapper = document.getElementById('questsWrapper');
+        const dots = document.querySelectorAll('.dot');
+
+        if (wrapper && dots.length > 0) {
+            let currentStage = 0;
+            const totalStages = dots.length;
+
+            function goToStage(index) {
+                if (index < 0 || index >= totalStages) return;
+                currentStage = index;
+                wrapper.style.transform = `translateX(-${currentStage * 100}%)`;
+                dots.forEach(d => d.classList.remove('active'));
+                dots[currentStage].classList.add('active');
+            }
+
+            let touchStartX = 0;
+            wrapper.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+            wrapper.addEventListener('touchend', (e) => {
+                const diff = touchStartX - e.changedTouches[0].screenX;
+                if (Math.abs(diff) > 50) diff > 0 ? goToStage(currentStage + 1) : goToStage(currentStage - 1);
+            });
+
+            let isDragging = false;
+            let mouseStartX = 0;
+            wrapper.addEventListener('mousedown', (e) => { isDragging = true; mouseStartX = e.screenX; });
+            wrapper.addEventListener('mouseup', (e) => {
+                if (!isDragging) return;
+                isDragging = false;
+                const diff = mouseStartX - e.screenX;
+                if (Math.abs(diff) > 50) diff > 0 ? goToStage(currentStage + 1) : goToStage(currentStage - 1);
+            });
+            wrapper.addEventListener('mouseleave', () => { isDragging = false; });
+
+            dots.forEach(dot => dot.addEventListener('click', () => goToStage(parseInt(dot.dataset.dot) - 1)));
+        }
+
+        // Сохранение чекбоксов
+        document.querySelectorAll('.quest-check').forEach((cb, i) => {
+            const key = `quest-check-${i}`;
+            cb.checked = localStorage.getItem(key) === 'true';
+            cb.addEventListener('change', () => localStorage.setItem(key, cb.checked));
+        });
+
+        // ==========================================
+        // 7. ESCAPE
+        // ==========================================
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeBurger();
+                closeInfo();
+                if (mapModal && mapModal.classList.contains('active')) {
+                    mapModal.classList.remove('active');
+                    if (mapFrame) mapFrame.src = '';
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+
+        // ==========================================
+        // 8. НОВОСТИ
+        // ==========================================
+        const newsData = {
+            "category": "Новости университета",
+            "articles": [
+                {
+                    "date": "Пятница, 15 мая 2026 16:03",
+                    "title": "На площадке лектория «ZИНОВЬЕВ» состоится презентация научных и учебно-методических изданий преподавателей-филологов КГУ",
+                    "text": "21 мая в 15:00 в Зиновьевском зале Костромской областной универсальной научной библиотеки (ул. Советская, 73) состоится очередное заседание лектория «ZИНОВЬЕВ». На площадке лектория пройдет презентация научных и учебно-методических изданий преподавателей-филологов Костромского государственного университета.",
+                    "tags": ["анонсы", "КГУ", "КГУ_Кострома"]
+                },
+                {
+                    "date": "Пятница, 15 мая 2026 15:17",
+                    "title": "Сто тысяч рублей — за лучший студенческий проект по созданию цифрового помощника по адаптации первокурсников в вузе",
+                    "text": "В Институте «Высшая ИТ-школа» Костромского университета стартовал хакатон: студенты создают цифрового помощника для адаптации первокурсников. Главный партнёр хакатона — компания Т2.",
+                    "tags": ["активная молодёжь", "Высшая ИТшкола", "КГУ", "студенческая жизнь"]
+                },
+                {
+                    "date": "Пятница, 15 мая 2026 14:58",
+                    "title": "Форум для абитуриентов в КГУ: шаг к будущей профессии",
+                    "text": "В Костромском государственном университете прошёл форум для абитуриентов, который собрал школьников, стоящих на пороге выбора будущей профессии.",
+                    "tags": ["абитуриентам", "КГУ", "КГУ_Кострома"]
+                },
+                {
+                    "date": "Четверг, 14 мая 2026 17:00",
+                    "title": "СОЗДАНИЕ РУССКОЙ БАЛЕТНОЙ ШКОЛЫ",
+                    "text": "15 мая 1738 года был принят Указ императрицы Анны Иоанновны об открытии «Танцевальной Ея Императорского Величества школы».",
+                    "tags": ["100дат", "КГУ", "координационный центр КГУ"]
+                },
+                {
+                    "date": "Среда, 13 мая 2026 14:26",
+                    "title": "Будущее ювелирного дизайна — в надёжных руках",
+                    "text": "С 20 по 25 апреля 2026 года в Санкт-Петербургском государственном университете промышленных технологий и дизайна состоялся IX Международный конгресс «Дизайн. Материалы. Технология».",
+                    "tags": ["КГУ", "ИПТД"]
+                },
+                {
+                    "date": "Среда, 13 мая 2026 10:42",
+                    "title": "В КГУ завершилась работа II весенней научно-методической сессии по математике",
+                    "text": "В Костромском университете прошли мероприятия заключительного этапа второй весенней научно-методической сессии по математике.",
+                    "tags": ["Высшая ИТшкола", "ИФМЕН", "КГУ"]
+                }
+            ]
+        };
+
+        function renderNews() {
+            const newsGrid = document.getElementById('newsGrid');
+            if (!newsGrid) return;
+            newsGrid.innerHTML = '';
+            newsData.articles.forEach(article => {
+                const newsCard = document.createElement('div');
+                newsCard.className = 'news-card';
+                const formattedDate = article.date.split(' ').slice(0, 3).join(' ');
+                newsCard.innerHTML = `
+                    <div class="news-header">
+                        <div class="news-date">${formattedDate}</div>
+                        <h3>${article.title}</h3>
+                        <div class="news-tags">${article.tags.map(tag => `<span class="news-tag">#${tag}</span>`).join('')}</div>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-text">${article.text.substring(0, 200)}${article.text.length > 200 ? '...' : ''}</div>
+                        <a href="#" class="read-more" data-full-text="${article.text.replace(/"/g, '&quot;')}">Читать далее →</a>
+                    </div>
+                `;
+                newsGrid.appendChild(newsCard);
+            });
+            document.querySelectorAll('.read-more').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert(btn.dataset.fullText);
+                });
+            });
+        }
+        renderNews();
+
+        // ==========================================
+        // 9. ПЕРЕНОС ПОИСКА НА МОБИЛКАХ
+        // ==========================================
+        function relocateSearch() {
+            const searchElement = document.querySelector('.search');
+            const topRow = document.querySelector('.header-top-row');
+            const bottomRow = document.querySelector('.header-bottom-row');
+            if (!searchElement || !topRow || !bottomRow) return;
+            if (window.innerWidth <= 900) {
+                if (searchElement.parentElement !== bottomRow) bottomRow.appendChild(searchElement);
+            } else {
+                if (searchElement.parentElement !== topRow) {
+                    const aiBtn = document.querySelector('.ai-assistant-btn');
+                    aiBtn ? topRow.insertBefore(searchElement, aiBtn) : topRow.appendChild(searchElement);
+                }
+            }
+        }
+        relocateSearch();
+        window.addEventListener('resize', relocateSearch);
+    </script>
+</body>
+</html>

@@ -1,0 +1,513 @@
+/* ==========================================================================
+   ======             СТИЛИ СТРАНИЦЫ ВОЕННОГО УЧЕБНОГО ЦЕНТРА          ======
+   ========================================================================= */
+
+/* Основной контейнер */
+.container {
+    width: 100%;
+    max-width: 1350px;
+    margin: 20px auto;
+    padding: 0 16px;
+}
+
+/* Блок для информации от модулей */
+.Info-Block {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ===== КАРТОЧКИ ВОЕННЫХ СПЕЦИАЛЬНОСТЕЙ ===== */
+.military-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.military-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.military-header {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.military-badge {
+    align-self: flex-start;
+    padding: 4px 14px;
+    background: var(--accent);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+body.dark .military-badge {
+    background: rgba(59, 130, 246, 0.2);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+}
+
+.military-header h3 {
+    font-size: 18px;
+    color: var(--text);
+}
+
+.military-details {
+    border-top: 1px solid var(--border);
+    background: var(--card);
+}
+
+.military-details .details-content {
+    padding: 20px;
+}
+
+.military-details h4 {
+    font-size: 13px;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.military-details h4:not(:first-child) {
+    margin-top: 16px;
+}
+
+/* ===== ТЕГИ ===== */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tags span {
+    font-size: 12px;
+    padding: 6px 14px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--text);
+}
+
+/* ===== СПИСОК ДИСЦИПЛИН ===== */
+.subjects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.subjects span {
+    font-size: 12px;
+    padding: 6px 14px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--text);
+    transition: all 0.2s;
+}
+
+.subjects span:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: white;
+}
+
+body.dark .subjects span:hover {
+    background: var(--accent);
+    color: white;
+}
+
+/* ===== ИНФОРМАЦИОННАЯ КАРТОЧКА ===== */
+.info-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.info-card-header {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+}
+
+.info-icon {
+    font-size: 28px;
+}
+
+.info-card-header h3 {
+    font-size: 18px;
+    color: var(--text);
+}
+
+.info-card-content {
+    padding: 20px;
+}
+
+.info-card-content p {
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.info-card-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* ===== СПИСОК УСЛОВИЙ ПОСТУПЛЕНИЯ ===== */
+.admission-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px 0;
+}
+
+.admission-list li {
+    font-size: 14px;
+    color: var(--text);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admission-list li:last-child {
+    border-bottom: none;
+}
+
+.admission-list li::before {
+    content: "✅";
+    font-size: 14px;
+}
+
+.admission-note {
+    background: rgba(37, 99, 235, 0.08);
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    color: var(--text);
+}
+
+/* ===== КАРТОЧКА ПРЕПОДАВАТЕЛЯ ===== */
+.teacher-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.teacher-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.teacher-header {
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.teacher-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+    user-select: none;
+}
+
+body.dark .teacher-avatar {
+    background: rgba(59, 130, 246, 0.2);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+}
+
+.teacher-info {
+    flex: 1;
+}
+
+.teacher-info h3 {
+    font-size: 17px;
+    color: var(--text);
+    margin-bottom: 4px;
+}
+
+.teacher-info .position {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 6px;
+}
+
+.dept-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 20px;
+}
+
+.teacher-details {
+    border-top: 1px solid var(--border);
+    background: var(--card);
+}
+
+.teacher-details .details-content {
+    padding: 16px 20px;
+}
+
+.teacher-details h4 {
+    font-size: 13px;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+/* ===== ЗАГОЛОВКИ ===== */
+.page-title {
+    font-size: 26px;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.page-subtitle {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+.section-subtitle {
+    font-size: 20px;
+    color: var(--text);
+    margin: 30px 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+}
+
+/* ==========================================================================
+   ======             АДАПТИВ СТРАНИЦЫ (ОТ 320px ДО 600px)             ======
+   ========================================================================= */
+
+@media (max-width: 600px) {
+    .container {
+        padding: 0 12px;
+        margin: 12px auto;
+    }
+
+    .Info-Block {
+        padding: 16px;
+    }
+
+    .page-title {
+        font-size: 22px;
+    }
+
+    .section-subtitle {
+        font-size: 18px;
+        margin: 20px 0 15px 0;
+    }
+
+    .info-card-header {
+        padding: 12px 16px;
+    }
+
+    .info-card-header h3 {
+        font-size: 16px;
+    }
+
+    .info-card-content {
+        padding: 16px;
+    }
+
+    .military-header {
+        padding: 14px 12px;
+    }
+
+    .military-header h3 {
+        font-size: 15px;
+    }
+
+    .military-details .details-content {
+        padding: 14px 12px;
+    }
+
+    .teacher-header {
+        padding: 14px 12px;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .teacher-avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 16px;
+    }
+
+    .teacher-info h3 {
+        font-size: 15px;
+    }
+
+    .teacher-info .position {
+        font-size: 12px;
+    }
+
+    .teacher-details .details-content {
+        padding: 14px 12px;
+    }
+
+    .subjects span,
+    .tags span {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    .admission-list li {
+        font-size: 13px;
+        padding: 8px 0;
+    }
+}
+
+/* ==========================================================================
+   ======             СТИЛИ ДЛЯ МОДУЛЕЙ (если подгружают)              ======
+   ========================================================================= */
+
+/* Стили для списка программ (если модули грузят как на главной) */
+.program-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.program-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.2s;
+}
+
+.program-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.program-header {
+    padding: 16px 20px;
+}
+
+.program-header h3 {
+    font-size: 17px;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.program-code {
+    display: inline-block;
+    padding: 4px 10px;
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.program-details {
+    border-top: 1px solid var(--border);
+    padding: 16px 20px;
+    background: var(--card);
+}
+
+.program-details p {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 8px;
+}
+
+/* Фильтры (если нужны) */
+.filters-sidebar {
+    margin-bottom: 20px;
+}
+
+.filter-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.filter-card h3 {
+    font-size: 16px;
+    margin-bottom: 16px;
+    color: var(--text);
+}
+
+.filter-group {
+    margin-bottom: 16px;
+}
+
+.filter-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.filter-group select {
+    width: 100%;
+    height: 44px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    padding: 0 12px;
+    outline: none;
+}
+
+.apply-btn {
+    width: 100%;
+    height: 44px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.apply-btn:hover {
+    opacity: 0.85;
+}
